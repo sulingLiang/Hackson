@@ -1,0 +1,16 @@
+@import "/colorui/main.wxss";
+@import "/colorui/icon.wxss";
+
+image {
+  width: 27px;
+  height: 27px;
+}
+
+.cu-bar.tabbar .action.add-action, .bg-white {
+  background-color: #fff;
+}
+
+.bg-green {
+  background-color: #E54847;
+  color: #fff;
+}
