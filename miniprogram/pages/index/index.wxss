@@ -1,1 +1,33 @@
 /* miniprogram/pages/index/index.wxss */
+.search {
+    position: sticky;
+    top: 0rpx;
+    z-index: 1;
+}
+
+.scroll {
+    height: calc(100% - 100px);
+}
+
+.storyList {
+    height: 300rpx;
+    margin-bottom: 30rpx;
+    position: relative;
+}
+
+.avatar-img {
+    width: 150rpx;
+    height: 150rpx;
+    border-radius: 50%;
+    margin: 40rpx 0 0 20rpx;
+    z-index: 1;
+}
+
+.story-info {
+    height: 250rpx;
+    width: calc(100% - 120rpx);
+    position: absolute;
+    top: 50rpx;
+    left: 60rpx;
+    opacity: .9;
+}

@@ -6,13 +6,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    storyList: []
+    storyList: [],
+    backgroud: ["red", "orange", "green", "blue", "purple", "pink"]
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
+  upper(e) {
+    console.log(e)
+  },
+
+  lower(e) {
+    console.log(e)
+  },
+
+  onShow: function () {
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
@@ -23,7 +29,7 @@ Page({
     this.getStoryList()
   },
 
-  add:function(){
+  add: function () {
     db.collection('story').add({
       data: {
         title: "大话西游",
@@ -37,7 +43,7 @@ Page({
       }
     })
   },
-  getStoryList: function() {
+  getStoryList: function () {
     wx.showLoading({
       title: '加载中',
     })
@@ -54,29 +60,19 @@ Page({
       });
       wx.hideLoading();
     }).catch(err => {
-      console.error("err", err);
       wx.hideLoading();
     });
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
+  onReachBottom: function () {
     this.getStoryList();
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })
