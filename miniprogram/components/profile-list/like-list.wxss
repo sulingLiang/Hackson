@@ -1,0 +1,70 @@
+/* components/profile-list/like-list.wxss */
+@import "/colorui/main.wxss";
+@import "/colorui/icon.wxss";
+.page {
+  height: 100Vh;
+  width: 100vw;
+}
+
+.page.show {
+  overflow: hidden;
+}
+
+.switch-sex::after {
+  content: "\e716";
+}
+
+.switch-sex::before {
+  content: "\e7a9";
+}
+
+.switch-music::after {
+  content: "\e66a";
+}
+
+.switch-music::before {
+  content: "\e6db";
+}
+.text-elli {
+  width: 100px;/*前提要设置宽度*/
+  overflow: hidden;/*超出隐藏*/
+  text-overflow: ellipsis;/*省略号*/
+  white-space: nowrap;/*不换行*/
+}
+.text-elli-multi {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cu-list.menu-avatar>.cu-item .content>view:first-child {
+  font-size: 30rpx;
+  display: block;
+  align-items: center;
+}
+.cu-list.grid>.cu-item {
+  display: block;
+}
+.cu-avatar.xxxl {
+	width: 210rpx;
+	height: 170rpx;
+	font-size: 2.5em;
+}
+.list-title {
+  position: absolute;
+  top: -19%;
+  left: -43%;
+  width: 100%;
+  z-index: 0;
+}
+.list-title-text {
+  position: absolute;
+  top: 0;
+  left: 12%;
+  width: 100%;
+}
+.cu-list.menu-avatar {
+  margin-top: 40rpx;
+  overflow-y: auto;
+  height: 450rpx;
+}

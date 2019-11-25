@@ -11,6 +11,9 @@
     "navigationBarTitleText": "故事接龙",
     "navigationBarTextStyle": "black"
   },
+  "usingComponents": {
+    "like-list": "/components/profile-list/like-list"
+  },
   "tabBar": {
     "custom": true,
     "color": "#000",
