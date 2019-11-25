@@ -28,7 +28,7 @@ Page({
       data: {
         title: "大话西游",
         author: "hey",
-        avatar: "bbb",
+        avatar: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTL1KKwd6lasoFGGCibDYN9MbYNbY39U7D1mic7mIwn19RZRcsaGicH33BxVXcQk5JXRNgZISMicT6EdSw/132",
         creatTime: new Date(),
         heart: "134543"
       },

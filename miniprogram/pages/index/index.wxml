@@ -1,14 +1,28 @@
 <!--miniprogram/pages/index/index.wxml-->
-<view class="movie" wx:for="{{storyList}}" wx:key="{{index}}">
-  <!-- <image class="movie-img" src="{{item.images.small}}"></image> -->
-  <view class="movie-info">
-    <view class="movie-title">{{item.title}}</view>
-    <view>观众评分：
-      <text class="movie-score"> {{item.creatTime}}分</text>
-    </view>
-    <view>主演：
-      <text wx:key="{{index}}" wx:for="{{item.casts}}">{{item.name}} </text>
-    </view>
-    <view>年份: {{item.year}}</view>
-  </view>
+<!-- <button bindtap="add">add</button> -->
+<view class="box">
+    <view class="cu-bar search bg-white">
+        <view class="search-form round">
+          <text class="cuIcon-search"></text>
+          <input type="text" placeholder="搜索图片、文章、视频" confirm-type="search"></input>
+        </view>
+        <view class="action">
+          <button class="cu-btn bg-green shadow-blur round">搜索</button>
+        </view>
+      </view>
 </view>
+
+<!-- <view class="movie" wx:for="{{storyList}}" wx:key="{{index}}">
+  头像：<image class="movie-img" src="{{item.avatar}}"></image>
+  <view class="movie-info">
+    标题
+    <view class="movie-title">{{item.title}}</view>
+    <view>作者：
+      <text class="movie-score"> {{item.author}}</text>
+    </view>
+    <view>创建时间：
+      <text>{{item.creatTime}} </text>
+    </view>
+    <view>热度: {{item.heart}}</view>
+  </view>
+</view> -->
