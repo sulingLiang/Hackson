@@ -1,8 +1,9 @@
 {
   "pages": [
-    "pages/add/add",
     "pages/index/index",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/add/add",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
