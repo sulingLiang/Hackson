@@ -12,13 +12,93 @@ Page({
     CustomBar: app.globalData.CustomBar,
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    dataList: [],
+    likeList: {
+      tabTitle: '我的收藏',
+      tabContent: [
+        {
+          imgUrl: '',
+          title: 'Like',
+          desc: 'hahaha, do you like this story'
+        },
+        {
+          imgUrl: '',
+          title: 'This is a funny story',
+          desc: 'hahaha, do you like this story'
+        },
+        {
+          imgUrl: '',
+          title: 'This is a funny story',
+          desc: 'hahaha, do you like this story'
+        },
+        {
+          imgUrl: '',
+          title: 'This is a funny story',
+          desc: 'hahaha, do you like this story'
+        }
+      ]
+    },
+    partakeList: {
+      tabTitle: '我的参与',
+      tabContent: [
+        {
+          imgUrl: '',
+          title: 'Partake',
+          desc: 'hahaha, do you like this story'
+        },
+        {
+          imgUrl: '',
+          title: 'This is a funny story',
+          desc: 'hahaha, do you like this story'
+        },
+        {
+          imgUrl: '',
+          title: 'This is a funny story',
+          desc: 'hahaha, do you like this story'
+        },
+        {
+          imgUrl: '',
+          title: 'This is a funny story',
+          desc: 'hahaha, do you like this story'
+        }
+      ]
+    },
+    publishList: {
+      tabTitle: '我的发布',
+      tabContent: [
+        {
+          imgUrl: '',
+          title: 'Publish',
+          desc: 'hahaha, do you like this story'
+        },
+        {
+          imgUrl: '',
+          title: 'This is a funny story',
+          desc: 'hahaha, do you like this story'
+        },
+        {
+          imgUrl: '',
+          title: 'This is a funny story',
+          desc: 'hahaha, do you like this story'
+        },
+        {
+          imgUrl: '',
+          title: 'This is a funny story',
+          desc: 'hahaha, do you like this story'
+        }
+      ]
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({
+      dataList: this.data.likeList
+    })
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -54,6 +134,27 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+
+  // 标签导航切换
+  tabSelect (e) {
+    const tabId = e.currentTarget.dataset.id
+    if (tabId === '0') {
+      console.log('tabId', tabId)
+      this.setData({
+        dataList: this.data.likeList
+      })
+    } else if (tabId === '1') {
+      console.log('tabId', tabId)
+      this.setData({
+        dataList: this.data.partakeList
+      })
+    } else if (tabId === '2') {
+      console.log('tabId', tabId)
+      this.setData({
+        dataList: this.data.publishList
+      })
+    }
   },
 
   /**
