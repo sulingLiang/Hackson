@@ -1,2 +1,15 @@
-<!--miniprogram/pages/add/add.wxml-->
-<text>发布</text>
+<!-- miniprogram/pages/add/add.wxml -->
+<view class="container">
+  <form>
+    <view class="cu-form-group margin-top">
+      <view class="title">标题</view>
+      <input placeholder="故事标题" bindinput="titleInput"></input>
+    </view>
+    <view class="cu-form-group margin-top">
+      <textarea maxlength="-1" bindinput="startInput" style="height:700rpx;" placeholder="一段神奇的故事从你开始..."></textarea>
+    </view>
+    <view class="margin-tb-sm text-center">
+      <button class="cu-btn round bg-orange shadow">发布</button>
+    </view>
+  </form>
+</view>
