@@ -1,5 +1,5 @@
 <!--miniprogram/pages/index/index.wxml-->
-<!-- <button bindtap="add">add</button> -->
+<wxs module="tools" src="../../utils/tools.wxs"></wxs>
 <view class="search">
   <view class="cu-bar search bg-white">
     <view class="search-form round">
@@ -13,18 +13,30 @@
 </view>
 
 <scroll-view scroll-y class="scroll" bindscrolltolower="getStoryList">
-  <view class="storyList" wx:for="{{storyList}}" wx:key="{{index}}">
-    <view class="avatar">
-      <image class="avatar-img" src="{{item.avatar}}"></image>
-    </view>
-
-    <view class="story-info bg-gradual-{{backgroud[index%6]}} shadow-blur">
-      <view class="story-title">{{item.title}}</view>
-      <view>
-        <text class="story-author"> {{item.author}}</text>
+  <view class="storyList">
+    <view class="list-item" wx:for="{{storyList}}" wx:key="{{index}}">
+      <!--图片-->
+      <view class="image">
+        <image class="avatar" src="http://img1.gtimg.com/kid/pics/hv1/0/58/777/50539215.jpg" mode="widthFix">
+        </image>
+        <view class="text">
+          <view class="story-title">
+            {{item.title}}
+          </view>
+          <view class="story-fristflow">
+            {{item.content[0].content}}
+          </view>
+        </view>
       </view>
-      <view><text>{{item.creatTime}}</text></view>
-      <view class="story-heart">{{item.heart}}</view>
+      <!--内容-->
+      <view class="story-info">
+        <image class="story-avatar" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+        <view class="story-content">
+          <view class="story-author text-grey">{{item.author}}</view>
+          <view class="story-creatTime text-gray text-sm">{{tools.getDateDiff(item.creatTime)}}</view>
+          <!-- <view>{{item.heart}}</view> -->
+        </view>
+      </view>
     </view>
   </view>
 </scroll-view>
