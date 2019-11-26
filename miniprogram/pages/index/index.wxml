@@ -7,17 +7,21 @@
       <input type="text" placeholder="搜索故事、作者" confirm-type="search"></input>
     </view>
     <view class="action">
-      <button class="cu-btn bg-green shadow-blur round">搜索</button>
+      <button class="cu-btn search-but shadow-red round">搜索</button>
     </view>
   </view>
+</view>
+<view class="tab">
+  <view class="tab-item-check text-shadow">最热</view>
+  <view class="tab-item text-shadow">最新</view>
 </view>
 
 <scroll-view scroll-y class="scroll" bindscrolltolower="getStoryList">
   <view class="storyList">
-    <view class="list-item" wx:for="{{storyList}}" wx:key="{{index}}">
+    <view class="list-item" wx:for="{{storyList}}" wx:key="{{index}}" bindtap="detail" data-id="{{item._id}}">
       <!--图片-->
       <view class="image">
-        <image class="avatar" src="http://img1.gtimg.com/kid/pics/hv1/0/58/777/50539215.jpg" mode="widthFix">
+        <image class="avatar" src="{{item.image}}" mode="aspectFill">
         </image>
         <view class="text">
           <view class="story-title">
@@ -30,11 +34,19 @@
       </view>
       <!--内容-->
       <view class="story-info">
-        <image class="story-avatar" src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg"></image>
+        <view class="story-avatar">
+          <image class="story-avatar-image" src="{{item.avatar}}" mode="aspectFill"></image>
+        </view>
+
         <view class="story-content">
           <view class="story-author text-grey">{{item.author}}</view>
           <view class="story-creatTime text-gray text-sm">{{tools.getDateDiff(item.creatTime)}}</view>
-          <!-- <view>{{item.heart}}</view> -->
+          <view class="text-gray text-sm story-num">
+            <text wx:if="{{item.isstorylike}}" class="cuIcon-likefill margin-lr-xs text-red"></text>
+            <text wx:else class="cuIcon-likefill margin-lr-xs"></text>
+            <text class="cuIcon-appreciatefill margin-lr-xs"></text>{{item.floorliketotal}}
+            <text class="cuIcon-messagefill margin-lr-xs"></text>{{item.content.length}}
+          </view>
         </view>
       </view>
     </view>

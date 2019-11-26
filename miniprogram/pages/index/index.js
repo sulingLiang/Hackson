@@ -5,15 +5,13 @@ Page({
   data: {
     storyList: []
   },
-
-  upper(e) {
-    console.log(e)
+  detail: function(e) {
+    const id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../detail/detail?id=' + id
+    })
   },
-
-  lower(e) {
-    console.log(e)
-  },
-  onShow: function () {
+  onShow: function() {
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
@@ -22,11 +20,10 @@ Page({
     }
     this.getStoryList()
   },
-  getStoryList: function () {
+  getStoryList: function() {
     wx.showLoading({
       title: '加载中',
     })
-    console.log(this.data.storyList)
     wx.cloud.callFunction({
       name: 'index',
       data: {
@@ -45,7 +42,7 @@ Page({
     });
   },
 
-  onReachBottom: function () {
+  onReachBottom: function() {
     this.getStoryList();
   }
 })
