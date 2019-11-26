@@ -52,28 +52,28 @@ page{
   height: 50vh;
 }
 /* 用户头像 */
-.bg-white {
+.profile-wrap .bg-white {
 	background-color: rgba(255, 255, 255, 0);
 	color: var(--white);
 }
-.avatar {
+.profile-wrap .avatar {
   position: absolute;
-  top:15%;
-  left: 0%;
+  top:20%;
+  left: 5%;
 }
 /* 收藏 */
-scroll-view {
+.profile-wrap scroll-view {
   width: auto;
   position: absolute;
-  top: 36%;
+  top: 37%;
   right: 0;
   z-index: 99;
 }
-.nav .cu-item {
+.profile-wrap .nav .cu-item {
   margin-bottom: 30rpx;
-  width: 130rpx;
-  height: 130rpx;
-  line-height: 130rpx;
+  width: 110rpx;
+  height: 110rpx;
+  line-height: 110rpx;
   border-radius: 50%;
 }
 .like {
@@ -88,8 +88,8 @@ scroll-view {
   /* background: var(--gradualBlue); */
 	background: linear-gradient(45deg, #2a9eed, #9adafe);
 }
-.nav [class*="cuIcon-"] {
-	font-size: 70rpx;
+.profile-wrap .nav [class*="cuIcon-"] {
+	font-size: 50rpx;
   color: #fff;
 }
 /* 阴影 */
@@ -97,24 +97,24 @@ scroll-view {
 	--ShadowSize: 0 1rpx 6rpx;
 } */
 
-.shadow-lg {
+.profile-wrap .shadow-lg {
 	--ShadowSize: 0rpx 40rpx 100rpx 0rpx;
 }
-.shadow-warp {
+.profile-wrap .shadow-warp {
 	position: relative;
 }
-.shadow-warp-red {
+.profile-wrap .shadow-warp-red {
 	box-shadow: 0 10rpx 20rpx -5rpx #ffa9d3;
 }
 .shadow-warp-purple {
 	box-shadow: 0 10rpx 20rpx -5rpx #c1c7d8;
 }
-.shadow-warp-blue {
+.profile-wrap .shadow-warp-blue {
 	box-shadow: 0 10rpx 20rpx -5rpx #9adafe;
 }
 
-.shadow-warp:before,
-.shadow-warp:after {
+.profile-wrap .shadow-warp:before,
+.profile-wrap .shadow-warp:after {
 	position: absolute;
 	content: "";
 	top: 20rpx;
@@ -125,9 +125,7 @@ scroll-view {
 	transform: rotate(-3deg);
 	z-index: -1;
 }
-.list-warp {
-  /* height: 500rpx; */
-  /* overflow-y: auto; */
+.profile-wrap .list-warp {
   position: absolute;
   top: 49%;
   width: 100%;

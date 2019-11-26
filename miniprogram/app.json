@@ -12,7 +12,7 @@
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
-    "like-list": "/components/profile-list/like-list"
+    
   },
   "tabBar": {
     "custom": true,

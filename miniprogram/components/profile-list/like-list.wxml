@@ -1,8 +1,8 @@
 <!--components/profile-list/like-list.wxml-->
 <!-- 标签页 - 内容 -->
-<view>
+<view class="profile-list-wrap">
 <view class="list-title bg-white flex-sub radius shadow-lg">
-    <image src="https://image.weilanwl.com/gif/rhomb-white.gif" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
+    <image src="https://image.weilanwl.com/gif/rhomb-white.gif" mode="aspectFit" class="gif-white response" style="height:180rpx"></image>
   </view>
   <view class="list-title-text">收藏</view>
   <view class="cu-list menu-avatar">

@@ -37,12 +37,12 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.cu-list.menu-avatar>.cu-item .content>view:first-child {
+.profile-list-wrap .cu-list.menu-avatar>.cu-item .content>view:first-child {
   font-size: 30rpx;
   display: block;
   align-items: center;
 }
-.cu-list.grid>.cu-item {
+.profile-list-wrap .cu-list.grid>.cu-item {
   display: block;
 }
 .cu-avatar.xxxl {
@@ -59,12 +59,15 @@
 }
 .list-title-text {
   position: absolute;
-  top: 0;
-  left: 12%;
+  top: -5%;
+  left: 10%;
   width: 100%;
 }
-.cu-list.menu-avatar {
-  margin-top: 40rpx;
+.profile-list-wrap .cu-list.menu-avatar {
+  margin-top: 20rpx;
   overflow-y: auto;
   height: 450rpx;
+}
+.profile-list-wrap .cu-list.menu-avatar>.cu-item {
+  height: 145rpx;
 }
