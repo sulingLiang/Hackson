@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view class="container">
+  <image src="images/detailBg.png" mode="widthFix" class="detailBg" />
+  <view class="publish">
+    <image src="images/title.png" class="avatar"></image>
+    <view>Katy</view>
+    <view class="publish-time">2019-11-26</view>
+    <view class="publish-title">今天星期一今天星期一今天星期一</view>
+  </view>
+  <view class="detail">
+    <view wx:for="{{detail}}" wx:key="id" class="detail-item">
+      <view class="flex">
+        <image src="images/title.png" class="avatar"></image>
+        <view class="detail-info">
+          <text class="block detail-author">{{item.author}}</text>
+          <text class="detail-time">{{item.time}}</text>
+        </view>
+        <view class="like flex">
+          <text class="like-count">{{item.likeCount}}</text>
+          <image class="zan" src="images/like.svg" wx:if="{{item.likeCheck}}" bindtap="handleLike" data-id="{{item.id}}"/>
+          <image class="zan" src="images/unlike.svg" wx:else bindtap="handleLike" data-id="{{item.id}}"/>
+        </view>
+      </view>
+      <view class="detail-content">{{item.content}}</view>
+    </view>
+  </view>
+</view>
