@@ -17,7 +17,7 @@
 
 .storyList {
   width: 100%;
-  margin-bottom: 70rpx;
+  margin-bottom: 100rpx;
 }
 
 .list-item {

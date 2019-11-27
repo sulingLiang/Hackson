@@ -10,17 +10,17 @@ Component({
         selectedIconPath: '/images/book-actived.png',
         text: '首页'
       },
-      // {
-      //   add: true,
-      //   pagePath: '/pages/add/add',
-      //   text: '发布'
-      // },
       {
-        pagePath: '/pages/order/order',
-        iconPath: '/images/book.png',
-        selectedIconPath: '/images/book-actived.png',
-        text: '排行榜'
+        add: true,
+        pagePath: '/pages/add/add',
+        text: '发布'
       },
+      // {
+      //   pagePath: '/pages/order/order',
+      //   iconPath: '/images/book.png',
+      //   selectedIconPath: '/images/book-actived.png',
+      //   text: '排行榜'
+      // },
       {
         pagePath: '/pages/profile/profile',
         iconPath: '/images/profile.png',
