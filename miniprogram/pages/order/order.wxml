@@ -9,7 +9,7 @@
     <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{dataList}}" wx:for-item="item" wx:key="index">
       <view class='list-order'>{{index+1}}</view>
       <view class="cu-avatar round lg" style="background-image:url({{item.avatar}});">
-        <view class="cu-tag badge {{item.gender==0?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
+        <view class="cu-tag badge {{item.gender==2?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
       </view>
       <view class="content">
         <view class="text-grey text-elli">{{item.author}}</view>
