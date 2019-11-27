@@ -7,11 +7,9 @@ Page({
   data: {
     title: '',
     start: '',
-<<<<<<< HEAD
-    imgList: []
-=======
+    imgList: [],
     image: ''
->>>>>>> 30d309795a5b446d7da6bb4b488ceca21e680759
+
   },
   /**
    * 输入标题
@@ -29,7 +27,6 @@ Page({
       start: e.detail.value
     });
   },
-<<<<<<< HEAD
   /**
    * 选择图片
    */
@@ -89,8 +86,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {},
-=======
->>>>>>> 30d309795a5b446d7da6bb4b488ceca21e680759
+
 
   /**
    * 生命周期函数--监听页面显示
