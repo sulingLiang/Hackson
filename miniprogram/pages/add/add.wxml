@@ -30,3 +30,7 @@
     </view>
   </form>
 </view>
+
+<button bindtap="upload" wx:if="{{image}}">更新图片</button>
+<button bindtap="upload" wx:else >上传图片</button>
+<image src="{{image}}" style="width:200rpx;height:200rpx"></image>
