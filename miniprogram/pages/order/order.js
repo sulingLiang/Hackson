@@ -1,44 +1,28 @@
 // miniprogram/pages/order/order.js
+const db = wx.cloud.database();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    dataList: [],
-    likeList: {
-      tabTitle: '个人',
-      tabContent: [
-        {
-          imgUrl: '',
-          title: 'Like',
-          desc: 'hahaha, do you like this story'
-        },
-        {
-          imgUrl: '',
-          title: 'This is a funny story',
-          desc: 'hahaha, do you like this story'
-        },
-        {
-          imgUrl: '',
-          title: 'This is a funny story',
-          desc: 'hahaha, do you like this story'
-        },
-        {
-          imgUrl: '',
-          title: 'This is a funny story',
-          desc: 'hahaha, do you like this story'
-        }
-      ]
-    },
+    dataList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({
-      dataList: this.data.likeList
+    let that = this
+    db.collection('story').get({
+      success: function(res) {
+        // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
+        console.log(res.data);
+        that.setData({
+          dataList: res.data
+        });
+      }
     });
+    
   },
 
   /**

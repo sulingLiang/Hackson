@@ -16,7 +16,7 @@ const funMap = {
 }
 cloud.init()
 
-const db = cloud.database()
+export const db = cloud.database()
 // 云函数入口函数
 exports.main = async(event, context) => {
   return await funMap[event.fun](event, context);

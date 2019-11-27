@@ -10,11 +10,11 @@ Component({
         selectedIconPath: '/images/book-actived.png',
         text: '首页'
       },
-      // {
-      //   add: true,
-      //   pagePath: '/pages/add/add',
-      //   text: '发布'
-      // },
+      {
+        add: true,
+        pagePath: '/pages/add/add',
+        text: '发布'
+      },
       {
         pagePath: '/pages/order/order',
         iconPath: '/images/book.png',

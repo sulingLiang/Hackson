@@ -1,5 +1,6 @@
 // miniprogram/pages/add/add.js
-const db = wx.cloud.database()
+const db = wx.cloud.database();
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -7,11 +8,11 @@ Page({
   data: {
     title: '',
     start: '',
-<<<<<<< HEAD
-    imgList: []
-=======
-    image: ''
->>>>>>> 30d309795a5b446d7da6bb4b488ceca21e680759
+    image: '',
+    imgList: [],
+    currentAuthor: '',
+    currentAvatar: '',
+    gender:0
   },
   /**
    * 输入标题
@@ -29,25 +30,25 @@ Page({
       start: e.detail.value
     });
   },
-<<<<<<< HEAD
   /**
    * 选择图片
    */
   ChooseImage() {
+    const that = this;
     wx.chooseImage({
       count: 1, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: res => {
-        if (this.data.imgList.length != 0) {
-          this.setData({
-            imgList: this.data.imgList.concat(res.tempFilePaths)
-          });
-        } else {
-          this.setData({
-            imgList: res.tempFilePaths
-          });
-        }
+        // if (this.data.imgList.length != 0) {
+        //   this.setData({
+        //     imgList: this.data.imgList.concat(res.tempFilePaths)
+        //   });
+        // } else {
+        this.setData({
+          imgList: res.tempFilePaths
+        });
+        // }
       }
     });
   },
@@ -80,17 +81,64 @@ Page({
       }
     });
   },
+
+  publish() {
+    wx.cloud.uploadFile({
+      cloudPath: new Date().getTime() + '.png',
+      filePath: this.data.imgList[0],
+      success: file => {
+        that.setData({
+          image: file.fileID
+        });
+        db.collection('story')
+          .add({
+            // data 字段表示需新增的 JSON 数据
+            data: {
+              author: this.data.currentAuthor,
+              avatar: this.data.currentAvatar,
+              gender:this.data.gender,
+              creatTime: new Date().getTime(),
+              floorliketotal: 0,
+              image: this.data.image,
+              title: this.data.title,
+              content: [
+                {
+                  author: this.data.currentAuthor,
+                  avatar: this.data.currentAvatar,
+                  content: this.data.start,
+                  creatTime: new Date().getTime(),
+                  floor: 0,
+                  likeCount: 0
+                }
+              ]
+            }
+          })
+          .then(res => {
+            console.log(res);
+          });
+      },
+      fail: console.error
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
+  onLoad: function(options) {
+    console.log(app.globalData);
+    if (app.globalData) {
+      const userInfo = app.globalData.userInfo;
+      this.setData({
+        currentAuthor: userInfo.nickName,
+        currentAvatar: userInfo.avatarUrl,
+        gender: userInfo.gender
+      });
+    }
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {},
-=======
->>>>>>> 30d309795a5b446d7da6bb4b488ceca21e680759
 
   /**
    * 生命周期函数--监听页面显示
@@ -101,27 +149,5 @@ Page({
         selected: 1
       });
     }
-  },
-
-  upload: function() {
-    const that = this
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['original', 'compressed'],
-      sourceType: ['album', 'camera'],
-      success(res) {
-        const tempFilePaths = res.tempFilePaths
-        wx.cloud.uploadFile({
-          cloudPath: new Date().getTime() + '.png',
-          filePath: tempFilePaths[0],
-          success: res => {
-            that.setData({
-              image: res.fileID,
-            })
-          },
-          fail: console.error
-        })
-      }
-    })
   }
 });

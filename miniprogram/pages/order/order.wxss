@@ -4,9 +4,31 @@
   overflow:hidden;
 }
 .bg1{
-  width:750rpx;
-  height:600rpx;
+  width:100vw;
+  height:50vh;
+  position: relative;
+}
+.avatar1 {
+  position: absolute;
+  left:330rpx;
+  top:0;
+}
+.avatar2 {
+  position: absolute;
+  left: 155rpx;
+  top: 85rpx;
+}
+.avatar3 {
+  position: absolute;
+  left: 510rpx;
+  top: 135rpx;
 }
 .list{
-  overflow-y: auto;
+  height:50vh;
+  margin-left:20rpx;
+  overflow-y: auto !important;
+}
+.list-order{
+  position: absolute;
+  left:0;
 }
