@@ -1,0 +1,15 @@
+<!-- miniprogram/pages/order/order.wxml -->
+<view class="container">
+  <image src='../../images/order1.jpg' class="bg1"></image>
+  <view class="cu-list menu-avatar list">
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{dataList.tabContent}}" wx:for-item="dataListItem" wx:key="index" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view>
+      <view class="content">
+        <view class="text-grey text-elli">{{dataListItem.title}}</view>
+      </view>
+      <view class="action">
+        <view class="cu-tag round bg-grey sm">5</view>
+      </view>
+    </view>
+  </view>
+</view>
