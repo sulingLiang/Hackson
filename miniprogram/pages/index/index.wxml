@@ -1,5 +1,6 @@
 <!--miniprogram/pages/index/index.wxml-->
 <wxs module="tools" src="../../utils/tools.wxs"></wxs>
+<addbutton></addbutton>
 <view class="search">
   <view class="cu-bar search bg-white">
     <view class="search-form round">
@@ -52,3 +53,4 @@
     </view>
   </view>
 </scroll-view>
+

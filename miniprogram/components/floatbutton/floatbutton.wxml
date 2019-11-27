@@ -1,0 +1,4 @@
+<!--components/addbutton/addbutton.wxml-->
+<view class="contain">
+  <image class="template-image" src="/images/order.png" bindtap="translate" mode="scaleToFill" />
+</view>

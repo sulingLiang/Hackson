@@ -1,0 +1,15 @@
+/* components/addbutton/addbutton.wxss */
+
+.contain {
+  width: 93rpx;
+  height: 93rpx;
+  position: fixed;
+  right: 30rpx;
+  bottom: 150rpx;
+  z-index: 10;
+}
+
+.template-image{
+  width: 93rpx;
+  height: 93rpx;
+}

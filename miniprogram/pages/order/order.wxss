@@ -1,0 +1,12 @@
+/* miniprogram/pages/order/order.wxss */
+.container{
+  background: #ffffff;
+  overflow:hidden;
+}
+.bg1{
+  width:750rpx;
+  height:600rpx;
+}
+.list{
+  overflow-y: auto;
+}
