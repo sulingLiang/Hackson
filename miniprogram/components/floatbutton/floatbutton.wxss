@@ -10,6 +10,6 @@
 }
 
 .template-image{
-  width: 93rpx;
-  height: 93rpx;
+  width: 90rpx;
+  height: 80rpx;
 }
