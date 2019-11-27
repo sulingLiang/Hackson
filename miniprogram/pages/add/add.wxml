@@ -25,8 +25,8 @@
         </view>
       </view>
     </view>
-    <view class="margin-tb-sm text-right pub" style="margin-right:10rpx;">
-      <button class="cu-btn round bg-orange shadow" bindtap="publish">发布</button>
-    </view>
   </form>
+    <view class="margin-tb-sm text-right pub" style="margin-right:10rpx;">
+    <button class="cu-btn round bg-red shadow" bindtap="publish">发布</button>
+  </view>
 </view>
