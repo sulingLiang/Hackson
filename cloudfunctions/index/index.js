@@ -11,12 +11,25 @@ const searchStotyAll = async(event, context) => {
   )
 }
 
+const searchAllStotyLike = async(event, context) => {
+  console.log(event)
+  return await db.collection(event.db).where({
+    _openid: event._openid
+  }).get().then(
+    res => {
+      return {
+        mystorylike: res.data
+      }
+    }
+  )
+}
 const funMap = {
-  searchStotyAll
+  searchStotyAll,
+  searchAllStotyLike
 }
 cloud.init()
 
-const db = cloud.database()
+export const db = cloud.database()
 // 云函数入口函数
 exports.main = async(event, context) => {
   return await funMap[event.fun](event, context);

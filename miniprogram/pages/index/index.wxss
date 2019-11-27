@@ -68,6 +68,14 @@
   z-index: 0;
 }
 
+.tag {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #e54847 !important;
+  color: #fff;
+}
+
 .text {
   min-height: 100rpx;
   position: absolute;

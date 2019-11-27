@@ -9,7 +9,7 @@
       <textarea maxlength="-1" bindinput="startInput" style="height:400rpx;" placeholder="一段神奇的故事从你开始..."></textarea>
     </view>
     <view class="cu-bar bg-white margin-top">
-      <view class="action">图片上传</view>
+      <view class="action">封面上传</view>
       <view class="action">{{imgList.length}}/1</view>
     </view>
     <view class="cu-form-group">
@@ -26,11 +26,7 @@
       </view>
     </view>
     <view class="margin-tb-sm text-center">
-      <button class="cu-btn round bg-orange shadow">发布</button>
+      <button class="cu-btn round bg-orange shadow" bindtap="publish">发布</button>
     </view>
   </form>
 </view>
-
-<button bindtap="upload" wx:if="{{image}}">更新图片</button>
-<button bindtap="upload" wx:else >上传图片</button>
-<image src="{{image}}" style="width:200rpx;height:200rpx"></image>

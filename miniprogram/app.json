@@ -30,7 +30,15 @@
       },
       {
         "pagePath": "pages/add/add",
-        "text": "发布"
+        "text": "发布",
+        "iconPath": "images/book.png",
+        "selectedIconPath": "images/book-actived.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "排行榜",
+        "iconPath": "images/book.png",
+        "selectedIconPath": "images/book-actived.png"
       },
       {
         "pagePath": "pages/profile/profile",
