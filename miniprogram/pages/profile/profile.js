@@ -127,7 +127,7 @@ Page({
       })
     }
 
-    this.searchList()
+    this.getDataFromStory()
   },
 
   getUserInfo: function (e) {
@@ -139,37 +139,62 @@ Page({
     })
   },
 
-  // 获取收藏列表
-  searchList () {
+  // 获取storylike集合中的值
+  // searchList () {
+  //   wx.cloud.callFunction({
+  //     // 云函数名称
+  //     name: 'profile',
+  //     // 传给云函数的参数
+  //     data: {
+  //       fun: "getProfileList",
+  //       db: "storylike",
+  //     }
+  //   }).then(res => {
+  //     this.setData({
+  //       profileList: [...res.result.profileList],
+  //     })
+  //     console.log(this.data.profileList)
+  //     this.data.profileList.map(item => {
+  //       this.getDataFromStory(item)
+  //     })
+  //   }).catch(err => {
+
+  //   })
+  // },
+  // 从story集合中查询
+  // getDataFromStory (val) {
+  //   const { _openid, storyid } = val;
+  //   console.log('=====', storyid)
+  //   wx.cloud.callFunction({
+  //     name: "profile",
+  //     data: {
+  //       fun: "getProfileList",
+  //       db: "story",
+  //       _openid: _openid,
+  //       _id: storyid
+  //     }
+  //   }).then(res => {
+  //     console.log('llll res', res)
+  //   })
+  // },
+
+  // 联合查询
+  getDataFromStory () {
+    
     wx.cloud.callFunction({
-      // 云函数名称
       name: 'profile',
-      // 传给云函数的参数
       data: {
-        fun: "getProfileList",
-        db: "storylike",
+        fun: 'getDataFromStory',
+        db: 'storylike',
+        from: 'story',
+        // localField: 'storyid',
+        // foreignField: '_id',
+        localField: '_openid',
+        foreignField: '_openid',
+        as: 'dataList'
       }
     }).then(res => {
-      this.setData({
-        profileList: [...res.result.profileList],
-      })
-      console.log(this.data.profileList)
-      // this.data.profileList.map(item => {
-      //   const { _openid, storyid } = item;
-      //   wx.cloud.callFunction({
-      //     name: "profile",
-      //     data: {
-      //       fun: "getProfileList",
-      //       db: "story",
-      //       _openid: _openid,
-      //       _id: storyid
-      //     }
-      //   }).then(res => {
-      //     console.log('llll res', res)
-      //   })
-      // })
-    }).catch(err => {
-
+      console.log('======res', res)
     })
   },
 
