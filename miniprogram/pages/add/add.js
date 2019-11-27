@@ -12,7 +12,7 @@ Page({
     imgList: [],
     currentAuthor: '',
     currentAvatar: '',
-    gender:0
+    gender: 0
   },
   /**
    * 输入标题
@@ -40,15 +40,18 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: res => {
-        // if (this.data.imgList.length != 0) {
-        //   this.setData({
-        //     imgList: this.data.imgList.concat(res.tempFilePaths)
-        //   });
-        // } else {
         this.setData({
           imgList: res.tempFilePaths
         });
-        // }
+        wx.cloud.uploadFile({
+          cloudPath: new Date().getTime() + '.png',
+          filePath: this.data.imgList[0],
+          success: file => {
+            that.setData({
+              image: file.fileID
+            });
+          }
+        });
       }
     });
   },
@@ -83,42 +86,37 @@ Page({
   },
 
   publish() {
-    wx.cloud.uploadFile({
-      cloudPath: new Date().getTime() + '.png',
-      filePath: this.data.imgList[0],
-      success: file => {
-        that.setData({
-          image: file.fileID
-        });
-        db.collection('story')
-          .add({
-            // data 字段表示需新增的 JSON 数据
-            data: {
+    console.log('发布');
+    db.collection('story')
+      .add({
+        // data 字段表示需新增的 JSON 数据
+        data: {
+          author: this.data.currentAuthor,
+          avatar: this.data.currentAvatar,
+          gender: this.data.gender,
+          creatTime: new Date().getTime(),
+          floorliketotal: 0,
+          image: this.data.image,
+          title: this.data.title,
+          content: [
+            {
               author: this.data.currentAuthor,
               avatar: this.data.currentAvatar,
-              gender:this.data.gender,
+              content: this.data.start,
               creatTime: new Date().getTime(),
-              floorliketotal: 0,
-              image: this.data.image,
-              title: this.data.title,
-              content: [
-                {
-                  author: this.data.currentAuthor,
-                  avatar: this.data.currentAvatar,
-                  content: this.data.start,
-                  creatTime: new Date().getTime(),
-                  floor: 0,
-                  likeCount: 0
-                }
-              ]
+              floor: 0,
+              likeCount: 0
             }
-          })
-          .then(res => {
-            console.log(res);
-          });
-      },
-      fail: console.error
-    });
+          ]
+        }
+      })
+      .then(res => {
+        console.log(res);
+        wx.switchTab({
+          url: '../index/index'
+        });
+      });
+    fail: console.error;
   },
   /**
    * 生命周期函数--监听页面加载

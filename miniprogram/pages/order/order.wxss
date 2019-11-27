@@ -2,6 +2,7 @@
 .container{
   background: #ffffff;
   overflow:hidden;
+  position: relative;
 }
 .bg1{
   width:100vw;
@@ -26,6 +27,7 @@
 .list{
   height:50vh;
   margin-left:20rpx;
+  margin-bottom:80rpx;
   overflow-y: auto !important;
 }
 .list-order{
