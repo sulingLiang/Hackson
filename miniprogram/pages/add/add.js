@@ -44,7 +44,7 @@ Page({
           imgList: res.tempFilePaths
         });
         wx.cloud.uploadFile({
-          cloudPath: new Date().getTime() + '.png',
+          cloudPath: new Date() + '.png',
           filePath: this.data.imgList[0],
           success: file => {
             that.setData({

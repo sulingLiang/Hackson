@@ -7,22 +7,48 @@ Page({
   data: {
     dataList: []
   },
-
+  getLike() {
+    db.collection('storylike')
+      .aggregate()
+      .lookup({
+        from: 'story',
+        localField: '_openid',
+        foreignField: '_openid',
+        as: 'dataList'
+      })
+      .end()
+      .then(res => {
+        console.log('res222', res);
+      })
+      .catch(err => {});
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let that = this
+    let that = this;
+    this.getLike();
     db.collection('story').get({
       success: function(res) {
         // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
-        console.log(res.data);
+        // 排序
+        res.data.sort((a, b) => {
+          return b.floorliketotal - a.floorliketotal;
+        });
+        // 去重
+        let result = [];
+        let obj = {};
+        for (var i = 0; i < res.data.length; i++) {
+          if (!obj[res.data[i]._openid]) {
+            result.push(res.data[i]);
+            obj[res.data[i]._openid] = true;
+          }
+        }
         that.setData({
-          dataList: res.data
+          dataList: result
         });
       }
     });
-    
   },
 
   /**

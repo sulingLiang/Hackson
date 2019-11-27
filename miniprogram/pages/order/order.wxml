@@ -1,6 +1,6 @@
 <!-- miniprogram/pages/order/order.wxml -->
 <view class="container">
-  <view style="background-image:url(../../images/order1.jpg);background-size:750rpx 600rpx;" class="bg1">
+  <view style="background-image:url(https://c-dev.weimobwmc.com/test/4dcbe90a7b6041a6aa63ea8f5eeaba7f.jpg);background-size:750rpx 600rpx;" class="bg1">
     <view class="avatar1 cu-avatar round lg" style="background-image:url({{dataList[0].avatar}});"></view>
     <view class="avatar2 cu-avatar round lg" style="background-image:url({{dataList[1].avatar}});"></view>
     <view class="avatar3 cu-avatar round lg" style="background-image:url({{dataList[2].avatar}});"></view>
