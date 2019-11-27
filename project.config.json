@@ -23,7 +23,7 @@
 	},
 	"appid": "wxfe307ef052c20865",
 	"projectname": "Hackson",
-	"libVersion": "2.8.1",
+	"libVersion": "2.9.3",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",

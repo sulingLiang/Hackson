@@ -1,6 +1,7 @@
 // miniprogram/pages/profile/profile.js
 //获取应用实例
-const app = getApp()
+const db = wx.cloud.database();
+const app = getApp();
 
 Page({
 
@@ -99,7 +100,6 @@ Page({
     this.setData({
       dataList: this.data.likeList
     })
-
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -127,7 +127,8 @@ Page({
       })
     }
 
-    this.getDataFromStory()
+    this.searchList()
+    
   },
 
   getUserInfo: function (e) {
@@ -140,66 +141,81 @@ Page({
   },
 
   // 获取storylike集合中的值
-  // searchList () {
-  //   wx.cloud.callFunction({
-  //     // 云函数名称
-  //     name: 'profile',
-  //     // 传给云函数的参数
-  //     data: {
-  //       fun: "getProfileList",
-  //       db: "storylike",
-  //     }
-  //   }).then(res => {
-  //     this.setData({
-  //       profileList: [...res.result.profileList],
-  //     })
-  //     console.log(this.data.profileList)
-  //     this.data.profileList.map(item => {
-  //       this.getDataFromStory(item)
-  //     })
-  //   }).catch(err => {
-
-  //   })
-  // },
-  // 从story集合中查询
-  // getDataFromStory (val) {
-  //   const { _openid, storyid } = val;
-  //   console.log('=====', storyid)
-  //   wx.cloud.callFunction({
-  //     name: "profile",
-  //     data: {
-  //       fun: "getProfileList",
-  //       db: "story",
-  //       _openid: _openid,
-  //       _id: storyid
-  //     }
-  //   }).then(res => {
-  //     console.log('llll res', res)
-  //   })
-  // },
-
-  // 联合查询
-  getDataFromStory () {
-    
+  searchList () {
     wx.cloud.callFunction({
+      // 云函数名称
       name: 'profile',
+      // 传给云函数的参数
       data: {
-        fun: 'getDataFromStory',
-        db: 'storylike',
-        from: 'story',
-        // localField: 'storyid',
-        // foreignField: '_id',
-        localField: '_openid',
-        foreignField: '_openid',
-        as: 'dataList'
+        fun: "getProfileList",
+        db: "storylike",
       }
     }).then(res => {
-      console.log('======res', res)
+      this.setData({
+        profileList: [...res.result.profileList],
+      })
+      this.data.profileList.map(item => {
+        this.getDataFromStory(item)
+      })
+    }).catch(err => {
+
+    })
+  },
+  // 从story集合中查询
+  getDataFromStory (val) {
+    console.log('val', val)
+    const { _openid, storyid } = val;
+    console.log('=====', storyid)
+    wx.cloud.callFunction({
+      name: "profile",
+      data: {
+        fun: "getProfileList",
+        db: "story",
+        _openid: _openid,
+        _id: _id
+      }
+    }).then(res => {
+      console.log('llll res', res)
     })
   },
 
+  // 联合查询
+  // getDataFromStory () {
+
+  //   wx.cloud.callFunction({
+  //     name: 'profile',
+  //     data: {
+  //       fun: 'getDataFromStory',
+  //       db: 'storylike',
+  //       from: 'story',
+  //       // localField: 'storyid',
+  //       // foreignField: '_id',
+  //       localField: '_openid',
+  //       foreignField: '_openid',
+  //       as: 'dataList'
+  //     }
+  //   }).then(res => {
+  //     console.log('======res', res)
+  //   })
+  // },
+
+  // getLike () {
+  //   db.collection('storylike').aggregate().lookup({
+  //     from: 'story',
+  //     localField: '_openid',
+  //     foreignField: '_openid',
+  //     as: 'dataList'
+  //   }).end()
+  //   .then(res => {
+  //     console.log('res', res)
+  //   }).catch(err => {
+  
+  //   })
+  // },
+
   // 标签导航切换
   tabSelect (e) {
+    // this.getLike()
     const tabId = e.currentTarget.dataset.id
     if (tabId === '0') {
       console.log('tabId', tabId)
