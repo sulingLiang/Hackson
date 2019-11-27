@@ -12,7 +12,7 @@ Page({
     imgList: [],
     currentAuthor: '',
     currentAvatar: '',
-    gender: 0
+    gender: null
   },
   /**
    * 输入标题
@@ -44,7 +44,7 @@ Page({
           imgList: res.tempFilePaths
         });
         wx.cloud.uploadFile({
-          cloudPath: new Date().getTime() + '.png',
+          cloudPath: new Date() + '.png',
           filePath: this.data.imgList[0],
           success: file => {
             that.setData({
@@ -93,8 +93,8 @@ Page({
         data: {
           author: this.data.currentAuthor,
           avatar: this.data.currentAvatar,
-          gender: this.data.gender,
-          creatTime: new Date().getTime(),
+          gender: this.data.gender?this.data.gender:2,
+          creatTime: new Date(),
           floorliketotal: 0,
           image: this.data.image,
           title: this.data.title,
@@ -103,9 +103,9 @@ Page({
               author: this.data.currentAuthor,
               avatar: this.data.currentAvatar,
               content: this.data.start,
-              creatTime: new Date().getTime(),
+              creatTime: new Date(),
               floor: 0,
-              likeCount: 0
+              likeCount: 1
             }
           ]
         }

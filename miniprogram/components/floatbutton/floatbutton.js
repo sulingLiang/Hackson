@@ -20,7 +20,7 @@ Component({
     translate() {
       //就一个
       wx.navigateTo({
-        url: '/pages/order/order'
+        url: '../order/order'
       })
       return
     }

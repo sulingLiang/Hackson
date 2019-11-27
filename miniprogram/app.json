@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/profile/profile",
+    "pages/index/index",
+    
     "pages/detail/detail",
     "pages/add/add",
     "pages/order/order"
@@ -30,12 +31,6 @@
       {
         "pagePath": "pages/add/add",
         "text": "发布",
-        "iconPath": "images/book.png",
-        "selectedIconPath": "images/book-actived.png"
-      },
-      {
-        "pagePath": "pages/order/order",
-        "text": "排行榜",
         "iconPath": "images/book.png",
         "selectedIconPath": "images/book-actived.png"
       },
