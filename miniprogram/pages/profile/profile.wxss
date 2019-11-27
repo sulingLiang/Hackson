@@ -204,3 +204,10 @@ page{
 .profile-list-wrap .cu-list.menu-avatar>.cu-item {
   height: 145rpx;
 }
+.profile-list-wrap .cu-list.menu-avatar>.cu-item .content {
+  left: 174rpx;
+}
+
+.profile-list-wrap .cuIcon-likefill {
+  font-size: 44rpx;
+}

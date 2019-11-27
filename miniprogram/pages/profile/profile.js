@@ -99,7 +99,7 @@ Page({
    */
   onLoad: function(options) {
 
-    this.getDataFromStory()
+    this.getDataFromStory('storylike')
     
     this.setData({
       dataList: this.data.likeList
@@ -145,53 +145,13 @@ Page({
     })
   },
 
-  // // 获取storylike集合中的值
-  // searchList () {
-  //   wx.cloud.callFunction({
-  //     // 云函数名称
-  //     name: 'profile',
-  //     // 传给云函数的参数
-  //     data: {
-  //       fun: "getProfileList",
-  //       db: "storylike",
-  //     }
-  //   }).then(res => {
-  //     this.setData({
-  //       profileList: [...res.result.profileList],
-  //     })
-  //     console.log('==profileList', this.data.profileList)
-  //     this.data.profileList.map(item => {
-  //       this.getDataFromStory(item)
-  //     })
-  //   }).catch(err => {
-
-  //   })
-  // },
-  // // 从story集合中查询
-  // getDataFromStory (val) {
-  //   console.log('val', val)
-  //   const { _openid, storyid } = val;
-  //   console.log('=====', storyid)
-  //   wx.cloud.callFunction({
-  //     name: "profile",
-  //     data: {
-  //       fun: "getProfileList",
-  //       db: "story",
-  //       _openid: _openid,
-  //       _id: _id
-  //     }
-  //   }).then(res => {
-  //     console.log('llll res', res)
-  //   })
-  // },
-
   // 联合查询
-  getDataFromStory () {
+  getDataFromStory (val) {
     wx.cloud.callFunction({
       name: 'profile',
       data: {
         fun: 'getDataFromStory',
-        db: 'storylike',
+        db: val,
         from: 'story',
         localField: 'storyid',
         foreignField: '_id',
@@ -209,27 +169,46 @@ Page({
 
   // 标签导航切换
   tabSelect (e) {
-    // this.getLike()
     const tabId = e.currentTarget.dataset.id
     if (tabId === '0') {
       console.log('tabId', tabId)
+      this.getDataFromStory('storylike')
       this.setData({
         tabTitle: '我的收藏',
         dataList: this.data.likeList
       })
     } else if (tabId === '1') {
       console.log('tabId', tabId)
+      this.getDataFromStory('storypartake')
       this.setData({
         tabTitle: '我的参与',
         dataList: this.data.partakeList
       })
     } else if (tabId === '2') {
       console.log('tabId', tabId)
+      this.getDataFromStory('storypublish')
       this.setData({
         tabTitle: '我的发布',
         dataList: this.data.publishList
       })
     }
+  },
+
+  // 取消点赞
+  cancelLike (e) {
+    console.log('e', e)
+    const cancelId = e.currentTarget.dataset.id
+    wx.cloud.callFunction({
+      name: 'profile',
+      data: {
+        fun: 'cancelLike',
+        db: 'storylike',
+        id: cancelId
+      }
+    }).then(res => {
+      console.log('======res', res)
+      this.getDataFromStory('storylike')
+    })
   },
 
   /**

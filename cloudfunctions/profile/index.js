@@ -29,7 +29,6 @@ const cloud = require('wx-server-sdk')
 // }
 
 const getDataFromStory = async (event, context) => {
-  console.log('event', event)
   return await db.collection(event.db).aggregate().lookup({
     from: event.from,
     localField: event.localField,
@@ -46,8 +45,16 @@ const getDataFromStory = async (event, context) => {
   })
 }
 
+const cancelLike = async (event, context) => {
+  return await db.collection(event.db).doc(event.id).remove()
+  .then(res => {
+    console.log('cancel res', res)
+  })
+}
+
 const funMap = {
-  getDataFromStory
+  getDataFromStory,
+  cancelLike
 }
 
 cloud.init()
