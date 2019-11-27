@@ -5,8 +5,8 @@
   position: relative;
 }
 .bg1{
-  width:100vw;
-  height:50vh;
+  width:750rpx;
+  height:100vh;
   position: relative;
 }
 .avatar1 {
@@ -33,4 +33,9 @@
 .list-order{
   position: absolute;
   left:0;
+}
+.zan {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right:10rpx;
 }

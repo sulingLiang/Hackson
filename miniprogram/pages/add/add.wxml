@@ -1,6 +1,6 @@
 <!-- miniprogram/pages/add/add.wxml -->
 <view class="container">
-  <form>
+  <form class="form">
     <view class="cu-form-group margin-top">
       <view class="title">标题</view>
       <input placeholder="故事标题" bindinput="titleInput"></input>
