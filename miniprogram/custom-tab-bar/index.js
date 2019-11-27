@@ -16,12 +16,6 @@ Component({
         text: '发布'
       },
       {
-        pagePath: '/pages/order/order',
-        iconPath: '/images/order.png',
-        selectedIconPath: '/images/book-actived.png',
-        text: '排行榜'
-      },
-      {
         pagePath: '/pages/profile/profile',
         iconPath: '/images/profile.png',
         selectedIconPath: '/images/profile-actived.png',
