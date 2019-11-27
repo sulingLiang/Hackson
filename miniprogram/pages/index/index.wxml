@@ -22,8 +22,8 @@
     <view class="list-item" wx:for="{{storyList}}" wx:key="{{index}}" bindtap="detail" data-id="{{item._id}}">
       <!--图片-->
       <view class="image">
-        <image class="avatar" src="{{item.image}}" mode="aspectFill">
-        </image>
+        <image class="avatar" src="{{item.image}}" mode="aspectFill"></image>
+        <view wx:if="{{index===0}}" class="cu-tag tag">top</view>
         <view class="text">
           <view class="story-title">
             {{item.title}}
@@ -43,7 +43,8 @@
           <view class="story-author text-grey">{{item.author}}</view>
           <view class="story-creatTime text-gray text-sm">{{tools.getDateDiff(item.creatTime)}}</view>
           <view class="text-gray text-sm story-num">
-            <text wx:if="{{item.isstorylike}}" class="cuIcon-likefill margin-lr-xs text-red"></text>
+            <text wx:if="{{tools.indexOf(mystorylike,item._id) > -1}}"
+              class="cuIcon-likefill margin-lr-xs text-red"></text>
             <text wx:else class="cuIcon-likefill margin-lr-xs"></text>
             <text class="cuIcon-appreciatefill margin-lr-xs"></text>{{item.floorliketotal}}
             <text class="cuIcon-messagefill margin-lr-xs"></text>{{item.content.length}}
@@ -53,4 +54,3 @@
     </view>
   </view>
 </scroll-view>
-

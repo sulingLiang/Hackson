@@ -1,26 +1,27 @@
 // miniprogram/pages/index/index.js
 const db = wx.cloud.database()
-
 Page({
   data: {
-    storyList: []
+    storyList: [],
+    mystorylike: []
   },
-  detail: function(e) {
+  detail: function (e) {
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '../detail/detail?id=' + id
     })
   },
-  onShow: function() {
+  onShow: async function () {
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
         selected: 0
       })
     }
-    this.getStoryList()
+    await this.getStoryList()
+    await this.getMystorylike()
   },
-  getStoryList: function() {
+  getStoryList: function () {
     wx.showLoading({
       title: '加载中',
     })
@@ -42,7 +43,31 @@ Page({
     });
   },
 
-  onReachBottom: function() {
+  getMystorylike: function () {
+    wx.cloud.callFunction({
+      name: 'login'
+    }).then(res => {
+      wx.cloud.callFunction({
+        name: 'index',
+        data: {
+          fun: "searchAllStotyLike",
+          db: "storylike",
+          _openid: res.result.openid
+        }
+      }).then(res => {
+        var arrlist = []
+        for (var item of res.result.mystorylike) {
+          arrlist.push(item.storyid)
+        }
+        this.setData({
+          mystorylike: arrlist
+        });
+      })
+    })
+
+  },
+
+  onReachBottom: function () {
     this.getStoryList();
   }
 })
