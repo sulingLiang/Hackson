@@ -35,12 +35,6 @@
         "selectedIconPath": "images/book-actived.png"
       },
       {
-        "pagePath": "pages/order/order",
-        "text": "排行榜",
-        "iconPath": "images/book.png",
-        "selectedIconPath": "images/book-actived.png"
-      },
-      {
         "pagePath": "pages/profile/profile",
         "text": "我的",
         "iconPath": "images/profile.png",
