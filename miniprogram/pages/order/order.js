@@ -7,27 +7,21 @@ Page({
   data: {
     dataList: []
   },
-  getLike() {
-    db.collection('storylike')
-      .aggregate()
-      .lookup({
-        from: 'story',
-        localField: '_openid',
-        foreignField: '_openid',
-        as: 'dataList'
-      })
-      .end()
-      .then(res => {
-        console.log('res222', res);
-      })
-      .catch(err => {});
-  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function(options) {},
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {},
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
     let that = this;
-    this.getLike();
     db.collection('story').get({
       success: function(res) {
         // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
@@ -50,16 +44,6 @@ Page({
       }
     });
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏

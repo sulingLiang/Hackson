@@ -93,7 +93,7 @@ Page({
         data: {
           author: this.data.currentAuthor,
           avatar: this.data.currentAvatar,
-          gender: this.data.gender?this.data.gender:2,
+          gender: this.data.gender ? this.data.gender : 2,
           creatTime: new Date(),
           floorliketotal: 0,
           image: this.data.image,
@@ -121,17 +121,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    console.log(app.globalData);
-    if (app.globalData) {
-      const userInfo = app.globalData.userInfo;
-      this.setData({
-        currentAuthor: userInfo.nickName,
-        currentAvatar: userInfo.avatarUrl,
-        gender: userInfo.gender
-      });
-    }
-  },
+  onLoad: function(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -142,6 +132,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    if (app.globalData) {
+      const userInfo = app.globalData.userInfo;
+      this.setData({
+        currentAuthor: userInfo.nickName,
+        currentAvatar: userInfo.avatarUrl,
+        gender: userInfo.gender
+      });
+    }
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
         selected: 1
