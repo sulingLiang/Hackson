@@ -13,6 +13,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    profileList: [], 
     dataList: [],
     likeList: {
       tabTitle: '我的收藏',
@@ -125,6 +126,8 @@ Page({
         }
       })
     }
+
+    this.searchList()
   },
 
   getUserInfo: function (e) {
@@ -133,6 +136,40 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+
+  // 获取收藏列表
+  searchList () {
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'profile',
+      // 传给云函数的参数
+      data: {
+        fun: "getProfileList",
+        db: "storylike",
+      }
+    }).then(res => {
+      this.setData({
+        profileList: [...res.result.profileList],
+      })
+      console.log(this.data.profileList)
+      // this.data.profileList.map(item => {
+      //   const { _openid, storyid } = item;
+      //   wx.cloud.callFunction({
+      //     name: "profile",
+      //     data: {
+      //       fun: "getProfileList",
+      //       db: "story",
+      //       _openid: _openid,
+      //       _id: storyid
+      //     }
+      //   }).then(res => {
+      //     console.log('llll res', res)
+      //   })
+      // })
+    }).catch(err => {
+
     })
   },
 

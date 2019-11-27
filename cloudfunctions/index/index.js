@@ -11,8 +11,21 @@ const searchStotyAll = async(event, context) => {
   )
 }
 
+const searchAllStotyLike = async(event, context) => {
+  console.log(event)
+  return await db.collection(event.db).where({
+    _openid: event._openid
+  }).get().then(
+    res => {
+      return {
+        mystorylike: res.data
+      }
+    }
+  )
+}
 const funMap = {
-  searchStotyAll
+  searchStotyAll,
+  searchAllStotyLike
 }
 cloud.init()
 

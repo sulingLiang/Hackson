@@ -57,7 +57,12 @@ var formatTime = function (date) {
     return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+
+var indexOf = function (Alldate,item) {
+    return Alldate.indexOf(item)
+}
 module.exports = {
     formatTime: formatTime,
-    getDateDiff: getDateDiff
+    getDateDiff: getDateDiff,
+    indexOf:indexOf
 }
