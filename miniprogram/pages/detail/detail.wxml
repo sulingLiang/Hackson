@@ -8,6 +8,7 @@
     <view class="publish-time">{{tools.formatTime(detail[0].creatTime)}}</view>
     <view class="title">{{detail[0].title}}</view>
   </view>
+  <text class="cuIcon-likefill {{!isStoryLike ? 'text-red' : ''}}" bindtap="handleStoryLike"></text>
   <view class="detail">
     <view wx:for="{{detail[0].content}}" wx:key="id" class="detail-item">
       <view class="flex">
@@ -25,7 +26,7 @@
       <view class="detail-content">{{item.content}}</view>
     </view>
   </view>
-  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="handleStoryClick" class="story-btn continue-btn confirm">续写故事</button>
+  <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="handleStoryClick" class="story-btn continue-btn confirm">续写</button>
   <view class="cover" wx:if="{{isShow}}"></view>
   <view class="cu-dialog" wx:if="{{isShow}}">
     <view class="cu-bar bg-white justify-end">
