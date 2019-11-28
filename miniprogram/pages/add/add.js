@@ -17,7 +17,7 @@ Page({
   /**
    * 输入标题
    */
-  titleInput(e) {
+  titleInput: function(e) {
     this.setData({
       title: e.detail.value
     });
@@ -86,7 +86,8 @@ Page({
   },
 
   publish() {
-    console.log('发布');
+    console.log('发布', this.data);
+    const that = this;
     db.collection('story')
       .add({
         // data 字段表示需新增的 JSON 数据
@@ -112,8 +113,26 @@ Page({
       })
       .then(res => {
         console.log(res);
-        wx.switchTab({
-          url: '../index/index'
+        wx.showToast({
+          title: '发布成功',
+          icon: 'success',
+          image: '',
+          duration: 1500,
+          mask: false,
+          success: result => {
+            this.setData({
+              title: '',
+              start: '',
+              image: '',
+              imgList: []
+            });
+          },
+          fail: () => {},
+          complete: () => {
+            wx.switchTab({
+              url: '../index/index'
+            });
+          }
         });
       });
     fail: console.error;
@@ -132,6 +151,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    
     if (app.globalData) {
       const userInfo = app.globalData.userInfo;
       this.setData({
@@ -145,16 +165,5 @@ Page({
         selected: 1
       });
     }
-  },
-  onHide: function() {
-    this.setData({
-      title: '',
-      start: '',
-      image: '',
-      imgList: [],
-      currentAuthor: '',
-      currentAvatar: '',
-      gender: null
-    });
   }
 });
