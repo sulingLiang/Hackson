@@ -144,3 +144,9 @@ page {
 .padding-xl {
   padding: 20rpx;
 }
+.cuIcon-likefill {
+  font-size: 60rpx !important;
+  position: absolute;
+  top: 330rpx;
+  right: 20rpx;
+}

@@ -9,7 +9,8 @@ Page({
     updateResult: {},
     storyId: '',
     userFloorLike: [],
-    userFloorLikeId: ''
+    userFloorLikeId: '',
+    isStoryLike: false
   },
   onLoad: function(option) {
     this.setData({
@@ -196,10 +197,17 @@ Page({
       storyContent: e.detail.value
     })
   },
+  // 获取用户信息
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo
+    })
+  },
+  // 是否收藏该故事
+  handleStoryLike: function() {
+    this.setData({
+      isStoryLike: !this.data.isStoryLike
     })
   }
 })
