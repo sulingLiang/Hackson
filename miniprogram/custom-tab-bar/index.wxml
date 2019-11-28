@@ -2,7 +2,7 @@
   <view wx:for="{{list}}" class="action" wx:key="index" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
     <view wx:if="{{item.add}}">
       <view class="action add-action">
-        <view class="cu-btn cuIcon-add bg-green shadow"></view>
+        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="cu-btn cuIcon-add bg-green shadow"></button>
         <view style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</view>
       </view>
     </view>
