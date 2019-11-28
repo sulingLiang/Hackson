@@ -12,6 +12,9 @@ Page({
     })
   },
   onShow: async function () {
+    this.setData({
+      storyList: []
+    })
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({

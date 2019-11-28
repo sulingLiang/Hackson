@@ -34,6 +34,22 @@ Component({
       this.setData({
         selected: data.index
       });
-    }
+    },
+    getUserInfo: function(e) {
+      if (e.detail.userInfo) {
+        getApp().globalData.userInfo = e.detail.userInfo
+        this.setData({
+          userInfo: e.detail.userInfo,
+          hasUserInfo: true
+        })
+      } else {
+        wx.switchTab({
+          url:"/pages/index/index"
+        });
+        this.setData({
+          selected: 0
+        });
+      }
+    },
   }
 });

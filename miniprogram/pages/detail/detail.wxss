@@ -22,6 +22,7 @@ page {
   top: 80rpx;
   text-align: center;
   padding: 15rpx 0;
+  font-weight: 500;
 }
 .publish-time {
   margin: 20rpx 0 0 0;
@@ -130,7 +131,10 @@ page {
 }
 .confirm {
   background: #e54847;
-  margin: 20rpx 15rpx;
+  height: 65rpx;
+  width: 150rpx;
+  line-height: 65rpx;
+  color: #ffffff;
 }
 .cu-dialog {
   position: fixed;
@@ -139,4 +143,10 @@ page {
 }
 .padding-xl {
   padding: 20rpx;
+}
+.cuIcon-likefill {
+  font-size: 60rpx !important;
+  position: absolute;
+  top: 330rpx;
+  right: 20rpx;
 }
