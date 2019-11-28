@@ -2,7 +2,7 @@
 @import 'weather.min.wxss';/*引入天气的css*/
 @import 'weather-cus.wxss';
 .container {
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
   position: absolute;
   top: 8%;
