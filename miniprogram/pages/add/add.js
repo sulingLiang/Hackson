@@ -104,8 +104,8 @@ Page({
               avatar: this.data.currentAvatar,
               content: this.data.start,
               creatTime: new Date(),
-              floor: 0,
-              likeCount: 1
+              floor: 1,
+              likeCount: 0
             }
           ]
         }
