@@ -13,10 +13,10 @@
   <form class="form publish-wrap">
     <view class="cu-form-group margin-top radius">
       <view class="title">标题：</view>
-      <input placeholder="故事标题" bindinput="titleInput"></input>
+      <input placeholder="故事标题"  value="{{title}}" bindinput="titleInput"></input>
     </view>
     <view class="cu-form-group margin-top">
-      <textarea maxlength="-1" bindinput="startInput" style="height:400rpx;" placeholder="一段神奇的故事从你开始..."></textarea>
+      <textarea maxlength="-1"  value="{{start}}" bindinput="startInput" style="height:400rpx;" placeholder="一段神奇的故事从你开始..."></textarea>
     </view>
     <view class="cu-form-group cu-bar margin-top">
       <view class="action">封面上传</view>

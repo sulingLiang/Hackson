@@ -9,11 +9,12 @@ Page({
   data: {
     title: '',
     start: '',
-    image: '',
+    image: 'https://c-dev.weimobwmc.com/test/2fa303a2c9a74a5ab9bc3faa4a5ca108.jpeg',
     imgList: [],
     currentAuthor: '',
     currentAvatar: '',
     gender: null,
+    openid:'',
     rain_bg: 'http://download.tpengyun.cn/res/WeatherTop/rain_background.jpg',//下雨背景
     snow_bg: 'http://download.tpengyun.cn/res/WeatherTop/snow_background.jpg',//下雪背景
     StatusBar: app.globalData.StatusBar,
@@ -93,7 +94,24 @@ Page({
   },
 
   publish() {
-    console.log('发布');
+    if (!this.data.title) {
+      wx.showToast({
+        title: '标题不能为空！',
+        icon: 'none',
+        duration: 1500,
+        mask: false
+      });
+      return null;
+    }
+    if (!this.data.start) {
+      wx.showToast({
+        title: '内容不能为空！',
+        icon: 'none',
+        duration: 1500,
+        mask: false
+      });
+      return null;
+    }
     db.collection('story')
       .add({
         // data 字段表示需新增的 JSON 数据
@@ -112,15 +130,33 @@ Page({
               content: this.data.start,
               creatTime: new Date(),
               floor: 1,
-              likeCount: 0
+              likeCount: 0,
+              _openid: this.data.openid
             }
           ]
         }
       })
       .then(res => {
-        console.log(res);
-        wx.switchTab({
-          url: '../index/index'
+        wx.showToast({
+          title: '发布成功',
+          icon: 'success',
+          image: '',
+          duration: 1500,
+          mask: false,
+          success: result => {
+            this.setData({
+              title: '',
+              start: '',
+              image: '',
+              imgList: []
+            });
+          },
+          fail: () => {},
+          complete: () => {
+            wx.switchTab({
+              url: '../index/index'
+            });
+          }
         });
       });
     fail: console.error;
@@ -183,7 +219,8 @@ Page({
       this.setData({
         currentAuthor: userInfo.nickName,
         currentAvatar: userInfo.avatarUrl,
-        gender: userInfo.gender
+        gender: userInfo.gender,
+        openid: app.globalData.openid
       });
     }
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
