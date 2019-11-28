@@ -2,7 +2,7 @@
 const cloud = require('wx-server-sdk')
 
 const searchStotyAll = async(event, context) => {
-  return await db.collection(event.db).skip(event.start).limit(event.count).get().then(
+  return await db.collection(event.db).orderBy('creatTime', 'desc').skip(-event.start).limit(event.count).get().then(
     res => {
       return {
         storyList: res.data
