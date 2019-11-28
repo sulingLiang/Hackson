@@ -145,5 +145,16 @@ Page({
         selected: 1
       });
     }
+  },
+  onHide: function() {
+    this.setData({
+      title: '',
+      start: '',
+      image: '',
+      imgList: [],
+      currentAuthor: '',
+      currentAvatar: '',
+      gender: null
+    });
   }
 });
