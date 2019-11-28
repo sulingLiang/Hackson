@@ -8,7 +8,7 @@
     <view class="publish-time">{{tools.formatTime(detail[0].creatTime)}}</view>
     <view class="title">{{detail[0].title}}</view>
   </view>
-  <text class="cuIcon-likefill {{!isStoryLike ? 'text-red' : ''}}" bindtap="handleStoryLike"></text>
+  <text class="cuIcon-likefill {{isStoryLike ? 'text-red' : ''}}" bindtap="handleStoryLike"></text>
   <view class="detail">
     <view wx:for="{{detail[0].content}}" wx:key="id" class="detail-item">
       <view class="flex">

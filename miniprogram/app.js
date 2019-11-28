@@ -48,9 +48,8 @@ App({
         fun: "getUserOpenid"
       }
     }).then(res => {
-        console.log({res})
-        this.globalData.openid = res.result.OPENID
-        this.globalData.appid = res.result.APPID
+      this.globalData.openid = res.result.OPENID
+      this.globalData.appid = res.result.APPID
     })
   },
   globalData: {

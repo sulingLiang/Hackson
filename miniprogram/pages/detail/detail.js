@@ -78,9 +78,9 @@ Page({
   // 获取故事详情
   getStoryDetail: function () {
     const id = this.data.storyId
-    wx.showLoading({
-      title: '加载中',
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
     wx.cloud.callFunction({
       name: 'detail',
       data: {
@@ -92,9 +92,9 @@ Page({
       this.setData({
         detail: res.result.detail
       });
-      wx.hideLoading();
+      // wx.hideLoading();
     }).catch(err => {
-      wx.hideLoading();
+      // wx.hideLoading();
     });
   },
   // 获取当前用户对楼层的点赞
@@ -237,7 +237,6 @@ Page({
         isStoryLike: this.data.isStoryLike
       }
     }).then(res => {
-      console.log(res)
     }).catch(err => {
       
     });
