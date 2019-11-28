@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <wxs module="tools" src="../../utils/tools.wxs"></wxs>
 <view class="container">
-  <image src="images/detailBg.png" mode="widthFix" class="detailBg" />
+  <image src="{{detail[0].image}}" mode="aspectFill" class="detailBg" />
   <view class="publish">
     <image src="{{detail[0].avatar}}" class="avatar"></image>
     <view>{{detail[0].author}}</view>
@@ -25,14 +25,28 @@
       <view class="detail-content">{{item.content}}</view>
     </view>
   </view>
-  <view bindtap="handleStoryClick" class="story-btn continue-btn">续写故事</view>
+  <view bindtap="handleStoryClick" class="story-btn continue-btn confirm">续写故事</view>
   <view class="cover" wx:if="{{isShow}}"></view>
-  <view class="pop-win" wx:if="{{isShow}}">
+  <!-- <view class="pop-win" wx:if="{{isShow}}">
     <view class="title">故事标题: {{detail[0].title}}</view>
     <textarea bindinput="continueStoryInput" class="continue-input" placeholder="请创作您的续写故事" name="storyContent"></textarea>
     <view class="flex" style="float: right;">
       <text class="cancel story-btn" bindtap="cancelContinueStory">取消</text>
       <text class="confirm story-btn" bindtap="handleContinueStrory">续写</text>
+    </view>
+  </view> -->
+  <view class="cu-dialog" wx:if="{{isShow}}">
+    <view class="cu-bar bg-white justify-end">
+    <view class="content">故事标题: {{detail[0].title}}</view>
+      <view bindtap="hideModal"class="action">
+        <text class="cuIcon-close text-red" bindtap="cancelContinueStory"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <form bindsubmit="handleContinueStrory">
+        <textarea placeholder="请创作您的续写故事" name="storyContent"/>
+        <button form-type="submit" class="confirm"> 提交 </button>
+      </form>
     </view>
   </view>
 </view>
