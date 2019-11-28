@@ -3,6 +3,8 @@
 page {
   background: #F5F5F5;
   display: flex;
+  position: relative;
+  min-height: 100%;
   flex-direction: column;
   justify-content: flex-start;
 }
@@ -19,7 +21,6 @@ page {
   position: absolute;
   top: 80rpx;
   text-align: center;
-  color: #ffffff;
   padding: 15rpx 0;
 }
 .publish-time {
@@ -30,8 +31,9 @@ page {
   font-weight: 500;
 }
 .detailBg {
-  background: blue;
   width: 100%;
+  height: 400rpx;
+  opacity: 0.3;
 }
 .detail {
   margin: 15rpx 0 5rpx;
@@ -94,6 +96,7 @@ page {
   position: fixed;
   bottom: 10rpx;
   right: 10rpx;
+  background: #e54847;
 }
 .cover {
   position: fixed;
@@ -104,9 +107,11 @@ page {
   background: gray;
   z-index: 2;
   opacity: 0.8;
+  width: 100vw;
+  height: 100vh;
 }
 .pop-win {
-  position: absolute;
+  position: fixed;
   z-index: 2;
   top: 30%;
   background: #ffffff;
@@ -124,6 +129,14 @@ page {
   color: #ffffff;
 }
 .confirm {
-  background: blue;
+  background: #e54847;
   margin: 20rpx 15rpx;
+}
+.cu-dialog {
+  position: fixed;
+  top: 30%;
+  z-index: 2;
+}
+.padding-xl {
+  padding: 20rpx;
 }
