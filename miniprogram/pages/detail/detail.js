@@ -10,12 +10,18 @@ Page({
     storyId: ''
   },
   onLoad: function(option) {
-    console.log({option})
     this.setData({
       storyId: option.id
     })
+  },
+  onShow: function() {
+    if (app.globalData.userInfo) {
+      const userInfo = app.globalData.userInfo;
+      this.setData({
+        userInfo: userInfo
+      });
+    }
     this.getStoryDetail();
-    this.getUserInfo();
   },
   // 点赞
   handleLike: function(e) {
@@ -36,31 +42,7 @@ Page({
       })
     }
   },
-  getUserInfo: function() {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo
-          })
-        }
-      })
-    }
-  },
+  // 获取故事详情
   getStoryDetail: function () {
     const id = this.data.storyId
     wx.showLoading({
@@ -95,7 +77,7 @@ Page({
     })
   },
   // 确认 续写
-  handleContinueStrory: function() {
+  handleContinueStrory: function(e) {
     const id = this.data.storyId
     const data = this.data;
     const temp = {
@@ -104,7 +86,7 @@ Page({
       author: data.userInfo.nickName,
       likeCount: 0,
       floor: data.detail[0].content.length + 1,
-      content: data.storyContent
+      content: e.detail.value.storyContent
     }
     wx.showLoading({
       title: '加载中',
@@ -123,7 +105,7 @@ Page({
         updateResult: res.result.stats
       });
       console.log({res})
-      if(updateResult.updated === 1) {
+      if(this.data.updateResult.updated === 1) {
         wx.showToast({
           title: '续写成功',
           icon: 'success',
@@ -150,6 +132,7 @@ Page({
           complete: ()=>{}
         });
       }
+      this.getStoryDetail()
       wx.hideLoading();
     }).catch(err => {
       wx.hideLoading();
@@ -160,6 +143,7 @@ Page({
   },
   //获取 续写框的值
   continueStoryInput: function(e) {
+    console.log({e})
     this.setData({
       storyContent: e.detail.value
     })

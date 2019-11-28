@@ -3,6 +3,7 @@ cloud.init()
 //声明数据库
 const db = cloud.database()
 // const _ = db.command
+// 获取故事详情
 const getStoryDetail= async (event, context) => {
   return await db.collection(event.db).where({ _id: event.id }).get().then(
     res => {
@@ -12,6 +13,7 @@ const getStoryDetail= async (event, context) => {
     }
   )
 }
+// 新增故事
 const updateStoryDetail= async (event, context) => {
   return await db.collection(event.db).where({ _id: event.id }).update({
     data: {
@@ -24,9 +26,19 @@ const updateStoryDetail= async (event, context) => {
     }
   })
 }
+// 获取用户 openid
+const getUserOpenid= async (event, context) => {
+  let { OPENID, APPID, UNIONID } = cloud.getWXContext()
+  return {
+    OPENID,
+    APPID,
+    UNIONID,
+  }
+}
 const funMap = {
   getStoryDetail,
-  updateStoryDetail
+  updateStoryDetail,
+  getUserOpenid
 }
 // 云函数入口函数
 exports.main = async(event, context) => {

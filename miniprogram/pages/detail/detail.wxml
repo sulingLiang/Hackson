@@ -43,11 +43,10 @@
       </view>
     </view>
     <view class="padding-xl">
-      <textarea bindinput="continueStoryInput" placeholder="请创作您的续写故事" name="storyContent"></textarea>
-    </view>
-    <view class="flex" style="float: right;">
-      <text class="cancel story-btn" bindtap="cancelContinueStory">取消</text>
-      <text class="confirm story-btn" bindtap="handleContinueStrory">续写</text>
+      <form bindsubmit="handleContinueStrory">
+        <textarea placeholder="请创作您的续写故事" name="storyContent"/>
+        <button form-type="submit" class="confirm"> 提交 </button>
+      </form>
     </view>
   </view>
 </view>

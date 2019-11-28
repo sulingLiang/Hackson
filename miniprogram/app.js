@@ -37,6 +37,23 @@ App({
     })
 
   },
+  onShow: function() {
+    this.getUserOpenId()
+  },
+  // 获取用户openid
+  getUserOpenId() {
+    const that = this
+    wx.cloud.callFunction({
+      name: 'detail',
+      data: {
+        fun: "getUserOpenid"
+      },
+      complete: res => {
+        this.globalData.openid = res.result.OPENID
+        this.globalData.appid = res.result.APPID
+      }
+    })
+  },
   globalData: {
     userInfo: null,
     openid: null,

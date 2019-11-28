@@ -130,7 +130,10 @@ page {
 }
 .confirm {
   background: #e54847;
-  margin: 20rpx 15rpx;
+  height: 65rpx;
+  width: 150rpx;
+  line-height: 65rpx;
+  color: #ffffff;
 }
 .cu-dialog {
   position: fixed;
