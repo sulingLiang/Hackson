@@ -8,7 +8,7 @@ Page({
   data: {
     title: '',
     start: '',
-    image: '',
+    image: 'https://c-dev.weimobwmc.com/test/2fa303a2c9a74a5ab9bc3faa4a5ca108.jpeg',
     imgList: [],
     currentAuthor: '',
     currentAvatar: '',
@@ -86,7 +86,22 @@ Page({
   },
 
   publish() {
-    console.log('发布', this.data);
+    if (!this.data.title) {
+      wx.showModal({
+        title: '提示',
+        content: '标题不能为空！',
+        cancelText: '再看看',
+        confirmText: '再见',
+        success: res => {
+          if (res.confirm) {
+            this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+            this.setData({
+              imgList: this.data.imgList
+            });
+          }
+        }
+      });
+    }
     const that = this;
     db.collection('story')
       .add({
@@ -151,7 +166,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
     if (app.globalData) {
       const userInfo = app.globalData.userInfo;
       this.setData({
