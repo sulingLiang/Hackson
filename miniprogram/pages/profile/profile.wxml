@@ -70,7 +70,7 @@
                 {{dataListItem.searchList[0].author}}
               </view>
             </view>
-            <view wx:if="{{tabTitle==='我的收藏'}}" class="action" bindtap="cancelLike" data-id="{{dataListItem._id}}">
+            <view wx:if="{{tabTitleId==='0'}}" class="action" bindtap="cancelLike" data-id="{{dataListItem._id}}">
               <text class="cuIcon-likefill text-red"></text>
               <!-- <view class="text-grey text-xs">22:20</view>
               <view class="cu-tag round bg-grey sm">5</view> -->

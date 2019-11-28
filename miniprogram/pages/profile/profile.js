@@ -14,97 +14,16 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    profileList: [], 
-    dataList: [],
     tabTitle: '我的收藏',
-    likeList: {
-      // tabTitle: '我的收藏',
-      tabContent: [
-        {
-          imgUrl: '',
-          title: 'Like',
-          desc: 'hahaha, do you like this story'
-        },
-        {
-          imgUrl: '',
-          title: 'This is a funny story',
-          desc: 'hahaha, do you like this story'
-        },
-        {
-          imgUrl: '',
-          title: 'This is a funny story',
-          desc: 'hahaha, do you like this story'
-        },
-        {
-          imgUrl: '',
-          title: 'This is a funny story',
-          desc: 'hahaha, do you like this story'
-        }
-      ]
-    },
-    partakeList: {
-      // tabTitle: '我的参与',
-      tabContent: [
-        {
-          imgUrl: '',
-          title: 'Partake',
-          desc: 'hahaha, do you like this story'
-        },
-        {
-          imgUrl: '',
-          title: 'This is a funny story',
-          desc: 'hahaha, do you like this story'
-        },
-        {
-          imgUrl: '',
-          title: 'This is a funny story',
-          desc: 'hahaha, do you like this story'
-        },
-        {
-          imgUrl: '',
-          title: 'This is a funny story',
-          desc: 'hahaha, do you like this story'
-        }
-      ]
-    },
-    publishList: {
-      // tabTitle: '我的发布',
-      tabContent: [
-        {
-          imgUrl: '',
-          title: 'Publish',
-          desc: 'hahaha, do you like this story'
-        },
-        {
-          imgUrl: '',
-          title: 'This is a funny story',
-          desc: 'hahaha, do you like this story'
-        },
-        {
-          imgUrl: '',
-          title: 'This is a funny story',
-          desc: 'hahaha, do you like this story'
-        },
-        {
-          imgUrl: '',
-          title: 'This is a funny story',
-          desc: 'hahaha, do you like this story'
-        }
-      ]
-    }
+    tabTitleId: '0',
+    dataList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
     this.getDataFromStory('storylike')
-    
-    this.setData({
-      dataList: this.data.likeList
-    })
-
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -131,13 +50,9 @@ Page({
         }
       })
     }
-
-    // this.searchList()
-    
   },
 
   getUserInfo: function (e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -155,12 +70,9 @@ Page({
         from: 'story',
         localField: 'storyid',
         foreignField: '_id',
-        // localField: '_openid',
-        // foreignField: '_openid',
         as: 'searchList'
       }
     }).then(res => {
-      console.log('======res', res)
       this.setData({
         dataList: res.result
       })
@@ -171,32 +83,28 @@ Page({
   tabSelect (e) {
     const tabId = e.currentTarget.dataset.id
     if (tabId === '0') {
-      console.log('tabId', tabId)
       this.getDataFromStory('storylike')
       this.setData({
         tabTitle: '我的收藏',
-        dataList: this.data.likeList
+        tabTitleId: '0'
       })
     } else if (tabId === '1') {
-      console.log('tabId', tabId)
       this.getDataFromStory('storypartake')
       this.setData({
         tabTitle: '我的参与',
-        dataList: this.data.partakeList
+        tabTitleId: '1'
       })
     } else if (tabId === '2') {
-      console.log('tabId', tabId)
       this.getDataFromStory('storypublish')
       this.setData({
         tabTitle: '我的发布',
-        dataList: this.data.publishList
+        tabTitleId: '2'
       })
     }
   },
 
   // 取消点赞
   cancelLike (e) {
-    console.log('e', e)
     const cancelId = e.currentTarget.dataset.id
     wx.cloud.callFunction({
       name: 'profile',
@@ -206,7 +114,6 @@ Page({
         id: cancelId
       }
     }).then(res => {
-      console.log('======res', res)
       this.getDataFromStory('storylike')
     })
   },

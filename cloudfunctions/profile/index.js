@@ -28,6 +28,7 @@ const cloud = require('wx-server-sdk')
 //   getDataFromStory
 // }
 
+// 联合查询
 const getDataFromStory = async (event, context) => {
   return await db.collection(event.db).aggregate().lookup({
     from: event.from,
@@ -35,17 +36,15 @@ const getDataFromStory = async (event, context) => {
     foreignField: event.foreignField,
     as: event.as
   }).end().then(res => {
-    console.log('res', res)
-    // return {
-    //   dataList: res
-    // }
     return res.list
   }).catch(err => {
 
   })
 }
 
+// 取消点赞
 const cancelLike = async (event, context) => {
+  console.log
   return await db.collection(event.db).doc(event.id).remove()
   .then(res => {
     console.log('cancel res', res)
