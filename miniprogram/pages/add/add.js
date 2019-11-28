@@ -12,7 +12,8 @@ Page({
     imgList: [],
     currentAuthor: '',
     currentAvatar: '',
-    gender: null
+    gender: null,
+    openid:''
   },
   /**
    * 输入标题
@@ -87,20 +88,22 @@ Page({
 
   publish() {
     if (!this.data.title) {
-      wx.showModal({
-        title: '提示',
-        content: '标题不能为空！',
-        cancelText: '再看看',
-        confirmText: '再见',
-        success: res => {
-          if (res.confirm) {
-            this.data.imgList.splice(e.currentTarget.dataset.index, 1);
-            this.setData({
-              imgList: this.data.imgList
-            });
-          }
-        }
+      wx.showToast({
+        title: '标题不能为空！',
+        icon: 'none',
+        duration: 1500,
+        mask: false
       });
+      return null;
+    }
+    if (!this.data.start) {
+      wx.showToast({
+        title: '内容不能为空！',
+        icon: 'none',
+        duration: 1500,
+        mask: false
+      });
+      return null;
     }
     const that = this;
     db.collection('story')
@@ -121,7 +124,8 @@ Page({
               content: this.data.start,
               creatTime: new Date(),
               floor: 1,
-              likeCount: 0
+              likeCount: 0,
+              _openid: this.data.openid
             }
           ]
         }
@@ -167,11 +171,13 @@ Page({
    */
   onShow: function() {
     if (app.globalData) {
+      console.log('app.globalData', app.globalData);
       const userInfo = app.globalData.userInfo;
       this.setData({
         currentAuthor: userInfo.nickName,
         currentAvatar: userInfo.avatarUrl,
-        gender: userInfo.gender
+        gender: userInfo.gender,
+        openid:app.globalData.openid
       });
     }
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
