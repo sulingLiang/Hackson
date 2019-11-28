@@ -7,11 +7,13 @@ Page({
     userInfo: {},
     storyContent: '',
     updateResult: {},
-    storyId: ''
+    storyId: '',
+    userFloorLike: [],
+    userFloorLikeId: ''
   },
   onLoad: function(option) {
     this.setData({
-      storyId: option.id
+      storyId: option.id || 'a4d6e3ee5dde801000081a242bb443f7'
     })
   },
   onShow: function() {
@@ -22,25 +24,54 @@ Page({
       });
     }
     this.getStoryDetail();
+    this.getStoryFloorLike();
   },
   // 点赞
   handleLike: function(e) {
-    const that = this
-    const arr = that.data.detail;
-    const index = that.data.detail.findIndex(item => item.id === e.currentTarget.dataset.id);
-    const likeCheck = "detail[" + index + "].likeCheck";
-    const likeCount = "detail[" + index + "].likeCount";
-    if (arr[index]['likeCheck']) {
-      that.setData({
-        [likeCheck]: false,
-        [likeCount]: that.data.detail[index]['likeCount'] - 1
-      })
+    const floor = e.currentTarget.dataset.floor;
+    let floorliketotal = 0; // 故事的总点赞数
+    let likeCount = 0 ; // 该楼层的点赞数
+    let isFloorLike = false; // 当前用户是否对该楼层点赞过
+    const isFlag = this.data.userFloorLike.some(item => item.floor === floor);
+    if (isFlag) {
+      // 取消点赞
+      floorliketotal = this.data.detail[0].floorliketotal - 1;
+      likeCount = this.data.detail[0].content[floor - 1].likeCount - 1;
+      isFloorLike = false;
     } else {
-      that.setData({
-        [likeCheck]: true,
-        [likeCount]: that.data.detail[index]['likeCount'] + 1
-      })
+      // 点赞
+      floorliketotal = this.data.detail[0].floorliketotal + 1;
+      likeCount = this.data.detail[0].content[floor - 1].likeCount + 1;
+      isFloorLike = true;
     }
+    Promise.all([
+      wx.cloud.callFunction({
+        name: 'detail',
+        data: {
+          fun: "updateFloorLike",
+          db: 'floorlike',
+          storyid: this.data.storyId,
+          _openid: app.globalData.openid || "osP-a5SxyKhyvoizAnnQ6oSN4eO8",
+          floor: floor,
+          isFloorLike: isFloorLike
+        }
+      }),
+      wx.cloud.callFunction({
+        name: 'detail',
+        data: {
+          fun: "updateStoryLike",
+          db: 'story',
+          storyid: this.data.storyId,
+          floor: floor,
+          floorliketotal: floorliketotal,
+          likeCount: likeCount
+        }
+      })
+    ])
+    .then(([a, b]) => {
+      this.getStoryFloorLike();
+      this.getStoryDetail()
+    })
   },
   // 获取故事详情
   getStoryDetail: function () {
@@ -53,7 +84,7 @@ Page({
       data: {
         fun: "getStoryDetail",
         db: 'story',
-        id: id || 'a4d6e3ee5dde801000081a242bb443f7'
+        id: id
       }
     }).then(res => {
       this.setData({
@@ -62,6 +93,24 @@ Page({
       wx.hideLoading();
     }).catch(err => {
       wx.hideLoading();
+    });
+  },
+  // 获取当前用户对楼层的点赞
+  getStoryFloorLike: function() {
+    wx.cloud.callFunction({
+      name: 'detail',
+      data: {
+        fun: "getStoryFloorLike",
+        db: 'floorlike',
+        storyid: this.data.storyId,
+        _openid: app.globalData.openid || "osP-a5SxyKhyvoizAnnQ6oSN4eO8"
+      }
+    }).then(res => {
+      this.setData({
+        userFloorLike: res.result.userFloorLike
+      });
+    }).catch(err => {
+      
     });
   },
   // 点击续写按钮
@@ -143,9 +192,14 @@ Page({
   },
   //获取 续写框的值
   continueStoryInput: function(e) {
-    console.log({e})
     this.setData({
       storyContent: e.detail.value
+    })
+  },
+  getUserInfo: function(e) {
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo
     })
   }
 })
