@@ -19,7 +19,7 @@ page{
   height: 500rpx;
   display: flex;
   justify-content: center;
-  padding-top: 40rpx;
+  /* padding-top: 40rpx; */
   overflow: hidden;
   position: relative;
   flex-direction: column;
@@ -48,11 +48,11 @@ page{
   background: #fff; 
   height: 100rpx;   
 }
-
-.bg-color-white {
-  background: #fff;
-  height: 50vh;
+.top-content {
+  position: absolute;
+  width: 100%;
 }
+
 /* 用户头像 */
 .profile-wrap .bg-white {
 	background-color: rgba(255, 255, 255, 0);
@@ -60,14 +60,18 @@ page{
 }
 .profile-wrap .avatar {
   position: absolute;
-  top:20%;
+  bottom: 5%;
   left: 5%;
+}
+.bg-color-white {
+  background: #fff;
+  height: 100vh;
 }
 /* 收藏 */
 .profile-wrap scroll-view {
   width: auto;
   position: absolute;
-  top: 37%;
+  bottom: -17%;
   right: 0;
   z-index: 99;
 }
@@ -129,7 +133,7 @@ page{
 }
 .profile-wrap .list-warp {
   position: absolute;
-  top: 49%;
+  top: 43%;
   width: 100%;
 }
 
@@ -185,19 +189,22 @@ page{
 }
 .list-title {
   position: absolute;
-  top: -19%;
+  /* top: -19%; */
+  top: 0;
   left: -43%;
   width: 100%;
   z-index: 0;
 }
 .list-title-text {
   position: absolute;
-  top: -5%;
+  /* top: -4%; */
+  top: 12%;
   left: 10%;
   width: 100%;
 }
 .profile-list-wrap .cu-list.menu-avatar {
-  margin-top: 20rpx;
+  /* margin-top: 20rpx; */
+  margin-top: 20%;
   overflow-y: auto;
   height: 450rpx;
 }
@@ -210,4 +217,16 @@ page{
 
 .profile-list-wrap .cuIcon-likefill {
   font-size: 44rpx;
+}
+.coupon-wrap {
+  display: flex;
+  justify-content: center;
+}
+.coupon-img {
+  margin-bottom: 40rpx;
+  width: 90%;
+  height: 180rpx;
+}
+page {
+  overflow: hidden;
 }

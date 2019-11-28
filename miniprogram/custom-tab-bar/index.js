@@ -12,7 +12,7 @@ Component({
       },
       {
         add: true,
-        pagePath: '/pages/add/add',
+        pagePath: '/pages/add-test/add',
         text: '发布'
       },
       {

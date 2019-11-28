@@ -1,20 +1,18 @@
 <!-- miniprogram/pages/profile/profile.wxml -->
 <!-- 流星背景 -->
 <view class="profile-wrap">
-  <view class='UCenter-bg'>
-    <view class='space'>
-      <view class="stars ">
-        <view class="star "></view>
-        <view class="star pink "></view>
-        <view class="star blue "></view>
-        <view class="star yellow "></view>
+  <view class="top-content">
+    <view class='UCenter-bg'>
+      <view class='space'>
+        <view class="stars ">
+          <view class="star "></view>
+          <view class="star pink "></view>
+          <view class="star blue "></view>
+          <view class="star yellow "></view>
+        </view>
       </view>
     </view>
-    <!-- <image src='/images/logo.png' class='png' mode='widthFix'></image> -->
-    <!-- <image src='https://image.weilanwl.com/gif/wave.gif' mode='scaleToFill' class='gif-wave'></image> -->
-  </view>
-  <!-- 头像昵称 -->
-  <view class="bg-color-white">
+    <!-- 头像昵称 -->
     <view class="bg-white radius shadow-lg avatar">
       <view class="flex justify-center">
         <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'>
@@ -28,8 +26,6 @@
         </block>
       </view>
     </view>
-    <!-- <image class="gif-wave response" mode="scaleToFill" src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" style="height:50px">
-</image> -->
     <!-- 标签页 - 导航 -->
     <scroll-view scroll-x class="nav text-center">
       <view class="like shadow-lg shadow-warp shadow-warp-red cu-item {{0==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="0">
@@ -41,22 +37,22 @@
       <view class="publish shadow-lg shadow-warp shadow-warp-blue cu-item {{2==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="2">
         <text class="cuIcon-skin"></text>
       </view>
+      <view class="publish shadow-lg shadow-warp shadow-warp-blue cu-item {{3==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="3">
+        <text class="cuIcon-refund"></text>
+      </view>
     </scroll-view>
-    <!-- <view class="list-title bg-white flex-sub radius shadow-lg">
-    <image src="https://image.weilanwl.com/gif/rhomb-white.gif" mode="aspectFit" class="gif-white response" style="height:240rpx"></image>
-  </view> -->
+  </view>
+  <view class="bg-color-white">
     <view class="list-warp">
-      <!-- 标签页 - 内容 -->
       <view class="profile-list-wrap">
         <view class="list-title bg-white flex-sub radius shadow-lg">
           <image src="https://image.weilanwl.com/gif/rhomb-white.gif" mode="aspectFit" class="gif-white response" style="height:180rpx"></image>
         </view>
         <view class="list-title-text">{{tabTitle}}</view>
-        <view class="cu-list menu-avatar">
+        <view wx:if="{{tabTitleId !== '3'}}" class="cu-list menu-avatar">
           <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{dataList}}" wx:for-item="dataListItem" wx:key="index" data-target="move-box-{{index}}">
             <view class="cu-avatar round xl" style="background-image:url({{dataListItem.searchList[0].avatar}});"></view>
             <view class="content">
-              
               <view class="text-grey text-elli">
                 <text class="cuIcon-creative text-lg text-red"></text>
                 {{dataListItem.searchList[0].title}}
@@ -70,15 +66,14 @@
                 {{dataListItem.searchList[0].author}}
               </view>
             </view>
-            <view wx:if="{{tabTitleId==='0'}}" class="action" bindtap="cancelLike" data-id="{{dataListItem._id}}">
+            <view wx:if="{{tabTitleId === '0'}}" class="action" bindtap="cancelLike" data-id="{{dataListItem._id}}">
               <text class="cuIcon-likefill text-red"></text>
-              <!-- <view class="text-grey text-xs">22:20</view>
-              <view class="cu-tag round bg-grey sm">5</view> -->
             </view>
-            <!-- <view class="move">
-              <view class="bg-grey">置顶</view>
-              <view class="bg-red">删除</view>
-            </view> -->
+          </view>
+        </view>
+        <view wx:else class="cu-list menu-avatar">
+          <view class="coupon-wrap" wx:for="{{dataList}}" wx:for-item="dataListItem" wx:key="index">
+            <image class="coupon-img" src="{{dataListItem.couponImg}}"></image>
           </view>
         </view>
       </view>

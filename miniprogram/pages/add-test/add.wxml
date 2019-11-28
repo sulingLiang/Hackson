@@ -1,0 +1,42 @@
+<!-- miniprogram/pages/add/add.wxml -->
+<!-- 下雨天 -->
+<view wx:if="{{weather==1}}" class='bg weather rain' style="background: url('{{rain_bg}}');background-repeat: no-repeat;background-size: 100% 100%;">
+  <view class="wt_date" style="height:{{CustomBar}}px;">
+    <view class='text' style='padding-top:{{StatusBar}}px;'>{{City}} {{date}} {{Desc}}</view>
+  </view>
+  <view class='pm' style='padding-top:{{StatusBar}}px;'>PM2.5：{{pm25}}</view>
+  <image bindtap='toDo' data-weather='2' class="rainImgText" mode='widthFix' src='http://download.tpengyun.cn/res/WeatherTop/rain_text.png' />
+  <!-- <view class='tips radius'>{{tips}}</view> -->
+  <image class="rainImgWindows" mode='widthFix' src='http://download.tpengyun.cn/res/WeatherTop/rain_windows.png' />
+</view>
+<view class="container">
+  <form class="form publish-wrap">
+    <view class="cu-form-group margin-top radius">
+      <view class="title">标题：</view>
+      <input placeholder="故事标题" bindinput="titleInput"></input>
+    </view>
+    <view class="cu-form-group margin-top">
+      <textarea maxlength="-1" bindinput="startInput" style="height:400rpx;" placeholder="一段神奇的故事从你开始..."></textarea>
+    </view>
+    <view class="cu-form-group cu-bar margin-top">
+      <view class="action">封面上传</view>
+      <view class="action">{{imgList.length}}/1</view>
+    </view>
+    <view class="cu-form-group">
+      <view class="grid col-4 grid-square flex-sub">
+        <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+          <image src='{{imgList[index]}}' mode='aspectFill'></image>
+          <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+            <text class="cuIcon-close"></text>
+          </view>
+        </view>
+        <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+          <text class="cuIcon-cameraadd"></text>
+        </view>
+      </view>
+    </view>
+  </form>
+    <view class="publish-btn margin-tb-sm text-right pub" style="margin-right:10rpx;">
+    <button class="cu-btn round bg-red shadow" bindtap="publish">创建</button>
+  </view>
+</view>
