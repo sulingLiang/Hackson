@@ -26,6 +26,7 @@ Page({
     }
     this.getStoryDetail();
     this.getStoryFloorLike();
+    this.getStoryLike();
   },
   // 点赞
   handleLike: function(e) {
@@ -60,7 +61,7 @@ Page({
       wx.cloud.callFunction({
         name: 'detail',
         data: {
-          fun: "updateStoryLike",
+          fun: "updateStoryFloorLike",
           db: 'story',
           storyid: this.data.storyId,
           floor: floor,
@@ -71,7 +72,7 @@ Page({
     ])
     .then(([a, b]) => {
       this.getStoryFloorLike();
-      this.getStoryDetail()
+      this.getStoryDetail();
     })
   },
   // 获取故事详情
@@ -204,8 +205,42 @@ Page({
       userInfo: e.detail.userInfo
     })
   },
+  // 获取用户是否收藏该故事
+  getStoryLike: function() {
+    wx.cloud.callFunction({
+      name: 'detail',
+      data: {
+        fun: "getStoryLike",
+        db: 'storylike',
+        storyid: this.data.storyId,
+        _openid: app.globalData.openid || "osP-a5SxyKhyvoizAnnQ6oSN4eO8"
+      }
+    }).then(res => {
+      const temp = res.result.storyLike.length > 0
+      this.setData({
+        storyLike: res.result.storyLike,
+        isStoryLike: temp
+      });
+    }).catch(err => {
+      
+    });
+  },
   // 是否收藏该故事
   handleStoryLike: function() {
+    wx.cloud.callFunction({
+      name: 'detail',
+      data: {
+        fun: "updateStoryLike",
+        db: 'storylike',
+        storyid: this.data.storyId,
+        _openid: app.globalData.openid || "osP-a5SxyKhyvoizAnnQ6oSN4eO8",
+        isStoryLike: this.data.isStoryLike
+      }
+    }).then(res => {
+      console.log(res)
+    }).catch(err => {
+      
+    });
     this.setData({
       isStoryLike: !this.data.isStoryLike
     })

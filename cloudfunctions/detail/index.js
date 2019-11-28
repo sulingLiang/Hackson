@@ -23,6 +23,31 @@ const getStoryFloorLike= async (event, context) => {
     }
   )
 }
+// 获取当前用户是否收藏该故事
+const getStoryLike= async (event, context) => {
+  return await db.collection(event.db).where({ storyid: event.storyid, _openid: event._openid }).get().then(
+    res => {
+      return {
+        storyLike: res.data
+      }
+    }
+  )
+}
+const updateStoryLike = async (event, context) => {
+  if (!event.isStoryLike) {
+    return await db.collection(event.db).add({
+      data: {
+        storyid: event.storyid,
+        _openid: event._openid
+      }
+    })
+  } else {
+    return await db.collection(event.db).where({ 
+      storyid: event.storyid,
+      _openid: event._openid
+    }).remove()
+  }
+}
 // 新增故事
 const updateStoryDetail= async (event, context) => {
   return await db.collection(event.db).where({ _id: event.id }).update({
@@ -64,7 +89,7 @@ const updateFloorLike = async (event, context) => {
   }
 }
 // 更新story表中的点赞总数，和楼层的点赞数
-const updateStoryLike = async (event, context) => {
+const updateStoryFloorLike = async (event, context) => {
   let index = event.floor - 1;
   return await db.collection(event.db).where({ _id: event.storyid }).update({
     data: {
@@ -83,7 +108,8 @@ const funMap = {
   getUserOpenid,
   getStoryFloorLike,
   updateFloorLike,
-  updateStoryLike
+  updateStoryFloorLike,
+  getStoryLike
 }
 // 云函数入口函数
 exports.main = async(event, context) => {
