@@ -12,7 +12,7 @@ Component({
       },
       {
         add: true,
-        pagePath: '/pages/add/add',
+        pagePath: '/pages/add-test/add',
         text: '发布'
       },
       {
@@ -37,7 +37,7 @@ Component({
     },
     getUserInfo: function(e) {
       if (e.detail.userInfo) {
-        app.globalData.userInfo = e.detail.userInfo
+        getApp().globalData.userInfo = e.detail.userInfo
         this.setData({
           userInfo: e.detail.userInfo,
           hasUserInfo: true

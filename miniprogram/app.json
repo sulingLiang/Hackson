@@ -3,7 +3,7 @@
     "pages/index/index",
     "pages/profile/profile",
     "pages/detail/detail",
-    "pages/add/add",
+    "pages/add-test/add",
     "pages/order/order"
   ],
   "window": {
@@ -28,7 +28,7 @@
         "selectedIconPath": "images/book-actived.png"
       },
       {
-        "pagePath": "pages/add/add",
+        "pagePath": "pages/add-test/add",
         "text": "发布",
         "iconPath": "images/book.png",
         "selectedIconPath": "images/book-actived.png"
@@ -40,6 +40,11 @@
         "selectedIconPath": "images/profile-actived.png"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于平台端展示"
+    }
   },
   "sitemapLocation": "sitemap.json"
 }

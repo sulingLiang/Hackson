@@ -1,6 +1,5 @@
 // miniprogram/pages/profile/profile.js
 //获取应用实例
-const db = wx.cloud.database();
 const app = getApp();
 
 Page({
@@ -16,13 +15,41 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     tabTitle: '我的收藏',
     tabTitleId: '0',
-    dataList: []
+    dataList: [],
+    couponList: [
+      {
+        couponId: '101',
+        couponImg: 'https://c-dev.weimobwmc.com/test/48f64b162ddc430ebaf129bd12f8d6d3.png'
+      },
+      {
+        couponId: '102',
+        couponImg: 'https://c-dev.weimobwmc.com/test/ed99a1c89647401193b989616541178b.png'
+      },
+      {
+        couponId: '103',
+        couponImg: 'https://c-dev.weimobwmc.com/test/b74c22f09d36414eaa4f71451ccb8771.png'
+      }
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function() {
+
+  },
+
+    /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function(options) {
+    if (typeof this.getTabBar === 'function' &&
+    this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 2
+      })
+    }
+
     this.getDataFromStory('storylike')
     if (app.globalData.userInfo) {
       this.setData({
@@ -61,7 +88,7 @@ Page({
   },
 
   // 联合查询
-  getDataFromStory (val) {
+  getDataFromStory (val, tabTitle, tabTitleId) {
     wx.cloud.callFunction({
       name: 'profile',
       data: {
@@ -74,7 +101,10 @@ Page({
       }
     }).then(res => {
       this.setData({
-        dataList: res.result
+        dataList: res.result,
+        tabTitle: tabTitle,
+        tabTitleId: tabTitleId
+        
       })
     })
   },
@@ -83,22 +113,30 @@ Page({
   tabSelect (e) {
     const tabId = e.currentTarget.dataset.id
     if (tabId === '0') {
-      this.getDataFromStory('storylike')
-      this.setData({
-        tabTitle: '我的收藏',
-        tabTitleId: '0'
-      })
+      this.getDataFromStory('storylike', '我的收藏', '0')
+      // this.setData({
+      //   tabTitle: '我的收藏',
+      //   tabTitleId: '0'
+      // })
     } else if (tabId === '1') {
-      this.getDataFromStory('storypartake')
-      this.setData({
-        tabTitle: '我的参与',
-        tabTitleId: '1'
-      })
+      this.getDataFromStory('storypartake', '我的参与', '1')
+      // this.setData({
+      //   tabTitle: '我的参与',
+      //   tabTitleId: '1'
+      // })
+      
     } else if (tabId === '2') {
-      this.getDataFromStory('storypublish')
+      this.getDataFromStory('storypublish', '我的发布', '2')
+      // this.setData({
+      //   tabTitle: '我的发布',
+      //   tabTitleId: '2'
+      // })
+    } else if (tabId === '3') {
+      // this.getDataFromStory('coupon')
       this.setData({
-        tabTitle: '我的发布',
-        tabTitleId: '2'
+        tabTitle: '我的优惠券',
+        tabTitleId: '3',
+        dataList: this.data.couponList
       })
     }
   },
@@ -123,18 +161,6 @@ Page({
    */
   onReady: function() {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 2
-      })
-    }
   },
 
   /**
