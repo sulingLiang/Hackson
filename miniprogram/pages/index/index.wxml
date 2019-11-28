@@ -5,7 +5,7 @@
   <view class="cu-bar search bg-white">
     <view class="search-form round">
       <text class="cuIcon-search"></text>
-      <input type="text" placeholder="搜索故事、作者" confirm-type="search"></input>
+      <input type="text" placeholder="搜索故事、楼主" confirm-type="search"></input>
     </view>
     <view class="action">
       <button class="cu-btn search-but shadow-red round">搜索</button>
@@ -13,8 +13,8 @@
   </view>
 </view>
 <view class="tab">
-  <view class="tab-item-check text-shadow">最热</view>
-  <view class="tab-item text-shadow">最新</view>
+  <view class="tab-item-check text-shadow">最新</view>
+  <view class="tab-item text-shadow">最热</view>
 </view>
 
 <scroll-view scroll-y class="scroll" bindscrolltolower="getStoryList">
