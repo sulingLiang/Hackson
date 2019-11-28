@@ -44,7 +44,7 @@ Page({
           imgList: res.tempFilePaths
         });
         wx.cloud.uploadFile({
-          cloudPath: new Date() + '.png',
+          cloudPath: new Date().getTime() + '.png',
           filePath: this.data.imgList[0],
           success: file => {
             that.setData({
@@ -104,8 +104,8 @@ Page({
               avatar: this.data.currentAvatar,
               content: this.data.start,
               creatTime: new Date(),
-              floor: 0,
-              likeCount: 1
+              floor: 1,
+              likeCount: 0
             }
           ]
         }

@@ -6,9 +6,14 @@ Page({
     isShow: false,
     userInfo: {},
     storyContent: '',
-    updateResult: {}
+    updateResult: {},
+    storyId: ''
   },
-  onLoad: function() {
+  onLoad: function(option) {
+    console.log({option})
+    this.setData({
+      storyId: option.id
+    })
     this.getStoryDetail();
     this.getUserInfo();
   },
@@ -56,7 +61,8 @@ Page({
       })
     }
   },
-  getStoryDetail: function (e) {
+  getStoryDetail: function () {
+    const id = this.data.storyId
     wx.showLoading({
       title: '加载中',
     })
@@ -65,7 +71,7 @@ Page({
       data: {
         fun: "getStoryDetail",
         db: 'story',
-        id: "e2001a7f5dde36c800ba38220cd46afe"
+        id: id || 'a4d6e3ee5dde801000081a242bb443f7'
       }
     }).then(res => {
       this.setData({
@@ -89,7 +95,8 @@ Page({
     })
   },
   // 确认 续写
-  handleContinueStrory: function(e) {
+  handleContinueStrory: function() {
+    const id = this.data.storyId
     const data = this.data;
     const temp = {
       creatTime: new Date,
@@ -108,7 +115,7 @@ Page({
       data: {
         fun: "updateStoryDetail",
         db: 'story',
-        id: "e2001a7f5dde36c800ba38220cd46afe",
+        id: id,
         data: temp
       }
     }).then(res => {
