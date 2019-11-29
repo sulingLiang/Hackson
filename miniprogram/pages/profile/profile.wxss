@@ -228,7 +228,7 @@ page {
   overflow: hidden;
 }
 .no-data {
-  width: 90%;
+  width: 100%;
   height: 180rpx;
   margin-top: 45rpx;
   text-align: center;
