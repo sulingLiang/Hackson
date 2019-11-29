@@ -1,7 +1,6 @@
 <!-- miniprogram/pages/order/order.wxml -->
 <view class="container">
-  <view style="background-image:url(https://c-dev.weimobwmc.com/test/c8fb83b6c5ea48bdb32411df3611e79c.png);background-size:contain;background-repeat:no-repeat;" class="bg1">
-  </view>
+  <image class="bg1" mode="widthFix" src="https://c-dev.weimobwmc.com/test/c8fb83b6c5ea48bdb32411df3611e79c.png"></image>
   <view class="cu-list menu-avatar list">
     <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{dataList}}" wx:for-item="item" wx:key="index">
       <view class='list-order'>{{index+4}}</view>
@@ -11,8 +10,8 @@
       <view class="content">
         <view class="text-grey text-elli">{{item.author}}</view>
       </view>
-        <image class="zan" src="images/like.svg" />
-        <view class="cu-tag round bg-grey sm">{{item.floorliketotal||0}}</view>
+      <image class="zan" src="images/like.svg" />
+      <view class="cu-tag round bg-grey sm">{{item.floorliketotal||0}}</view>
     </view>
   </view>
 </view>
