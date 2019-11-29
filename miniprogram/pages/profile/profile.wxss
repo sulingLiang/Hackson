@@ -163,7 +163,7 @@ page{
   content: "\e6db";
 }
 .text-elli {
-  width: 230px;/*前提要设置宽度*/
+  width: 480rpx;/*前提要设置宽度*/
   overflow: hidden;/*超出隐藏*/
   text-overflow: ellipsis;/*省略号*/
   white-space: nowrap;/*不换行*/
