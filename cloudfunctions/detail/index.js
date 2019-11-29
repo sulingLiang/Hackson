@@ -33,6 +33,7 @@ const getStoryLike= async (event, context) => {
     }
   )
 }
+// 更新当前用户对该故事的收藏与取消收藏
 const updateStoryLike = async (event, context) => {
   if (!event.isStoryLike) {
     return await db.collection(event.db).add({
@@ -109,7 +110,8 @@ const funMap = {
   getStoryFloorLike,
   updateFloorLike,
   updateStoryFloorLike,
-  getStoryLike
+  getStoryLike,
+  updateStoryLike
 }
 // 云函数入口函数
 exports.main = async(event, context) => {

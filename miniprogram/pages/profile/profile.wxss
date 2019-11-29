@@ -83,16 +83,16 @@ page{
   border-radius: 50%;
 }
 .like {
-  /* background: var(--gradualRed); */
   background: linear-gradient(45deg, #ff74be, #ffa9d3);
 }
 .partake {
-  /* background: var(--gradualPurple); */
   background: linear-gradient(45deg, #c159ee, #c1c7d8);
 }
 .publish {
-  /* background: var(--gradualBlue); */
 	background: linear-gradient(45deg, #2a9eed, #9adafe);
+}
+.coupon {
+  background: linear-gradient(45deg, #39b54a, #8dc63f);
 }
 .profile-wrap .nav [class*="cuIcon-"] {
 	font-size: 50rpx;
@@ -189,7 +189,6 @@ page{
 }
 .list-title {
   position: absolute;
-  /* top: -19%; */
   top: 0;
   left: -43%;
   width: 100%;
@@ -197,13 +196,11 @@ page{
 }
 .list-title-text {
   position: absolute;
-  /* top: -4%; */
   top: 12%;
   left: 10%;
   width: 100%;
 }
 .profile-list-wrap .cu-list.menu-avatar {
-  /* margin-top: 20rpx; */
   margin-top: 20%;
   overflow-y: auto;
   height: 450rpx;
@@ -229,4 +226,11 @@ page{
 }
 page {
   overflow: hidden;
+}
+.no-data {
+  width: 90%;
+  height: 180rpx;
+  margin-top: 45rpx;
+  text-align: center;
+
 }

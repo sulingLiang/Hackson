@@ -10,11 +10,12 @@ Page({
     storyId: '',
     userFloorLike: [],
     userFloorLikeId: '',
-    isStoryLike: false
+    isStoryLike: false,
+    dialogBottom: 35
   },
   onLoad: function(option) {
     this.setData({
-      storyId: option.id || 'a4d6e3ee5dde801000081a242bb443f7'
+      storyId: option.id
     })
   },
   onShow: function() {
@@ -53,7 +54,7 @@ Page({
           fun: "updateFloorLike",
           db: 'floorlike',
           storyid: this.data.storyId,
-          _openid: app.globalData.openid || "osP-a5SxyKhyvoizAnnQ6oSN4eO8",
+          _openid: app.globalData.openid,
           floor: floor,
           isFloorLike: isFloorLike
         }
@@ -78,9 +79,9 @@ Page({
   // 获取故事详情
   getStoryDetail: function () {
     const id = this.data.storyId
-    wx.showLoading({
-      title: '加载中',
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
     wx.cloud.callFunction({
       name: 'detail',
       data: {
@@ -92,9 +93,9 @@ Page({
       this.setData({
         detail: res.result.detail
       });
-      wx.hideLoading();
+      // wx.hideLoading();
     }).catch(err => {
-      wx.hideLoading();
+      // wx.hideLoading();
     });
   },
   // 获取当前用户对楼层的点赞
@@ -105,7 +106,7 @@ Page({
         fun: "getStoryFloorLike",
         db: 'floorlike',
         storyid: this.data.storyId,
-        _openid: app.globalData.openid || "osP-a5SxyKhyvoizAnnQ6oSN4eO8"
+        _openid: app.globalData.openid
       }
     }).then(res => {
       this.setData({
@@ -137,7 +138,8 @@ Page({
       author: data.userInfo.nickName,
       likeCount: 0,
       floor: data.detail[0].content.length + 1,
-      content: e.detail.value.storyContent
+      content: e.detail.value.storyContent,
+      _openid: app.globalData.openid
     }
     wx.showLoading({
       title: '加载中',
@@ -155,7 +157,6 @@ Page({
       that.setData({
         updateResult: res.result.stats
       });
-      console.log({res})
       if(this.data.updateResult.updated === 1) {
         wx.showToast({
           title: '续写成功',
@@ -213,7 +214,7 @@ Page({
         fun: "getStoryLike",
         db: 'storylike',
         storyid: this.data.storyId,
-        _openid: app.globalData.openid || "osP-a5SxyKhyvoizAnnQ6oSN4eO8"
+        _openid: app.globalData.openid
       }
     }).then(res => {
       const temp = res.result.storyLike.length > 0
@@ -233,16 +234,25 @@ Page({
         fun: "updateStoryLike",
         db: 'storylike',
         storyid: this.data.storyId,
-        _openid: app.globalData.openid || "osP-a5SxyKhyvoizAnnQ6oSN4eO8",
+        _openid: app.globalData.openid,
         isStoryLike: this.data.isStoryLike
       }
     }).then(res => {
-      console.log(res)
     }).catch(err => {
       
     });
     this.setData({
       isStoryLike: !this.data.isStoryLike
+    })
+  },
+  dialogFoucus: function(e) {
+    this.setData({
+      dialogBottom: 55
+    })
+  },
+  dialogBlur: function(e) {
+    this.setData({
+      dialogBottom: 35
     })
   }
 })

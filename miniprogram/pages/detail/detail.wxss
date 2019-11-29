@@ -18,7 +18,7 @@ page {
   display: block;
 }
 .publish {
-  position: absolute;
+  position: fixed;
   top: 80rpx;
   text-align: center;
   padding: 15rpx 0;
@@ -35,10 +35,15 @@ page {
   width: 100%;
   height: 400rpx;
   opacity: 0.3;
+  position: fixed;
 }
 .detail {
   margin: 15rpx 0 5rpx;
   width: 100%;
+  position: fixed;
+  top: 400rpx;
+  height: calc(100vh - 400rpx);
+  overflow: auto;
 }
 .detail-item {
   position: relative;
@@ -49,23 +54,23 @@ page {
   flex: 1;
 }
 .detail-author {
-  font-size: 30rpx;
+  font-size: 24rpx;
   color:#8799a3;
-  padding: 20rpx 0;
+  padding: 14rpx 0 10rpx;
 }
 .avatar {
-  width: 120rpx;
-  height: 120rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
   margin: 10rpx 30rpx;
 }
 .detail-time {
-  font-size: 30rpx;
+  font-size: 24rpx;
   color: #aaaaaa;
 }
 .detail-content {
-  font-size: 28rpx;
-  padding: 10rpx 50rpx;
+  font-size: 34rpx;
+  padding: 25rpx 40rpx;
   text-align:justify;
 }
 .like {
@@ -95,8 +100,8 @@ page {
 }
 .continue-btn {
   position: fixed;
-  bottom: 10rpx;
-  right: 10rpx;
+  bottom: 15rpx;
+  right: 20rpx;
   background: #e54847;
 }
 .cover {
@@ -138,7 +143,6 @@ page {
 }
 .cu-dialog {
   position: fixed;
-  top: 30%;
   z-index: 2;
 }
 .padding-xl {
@@ -146,7 +150,7 @@ page {
 }
 .cuIcon-likefill {
   font-size: 60rpx !important;
-  position: absolute;
+  position: fixed;
   top: 330rpx;
   right: 20rpx;
 }

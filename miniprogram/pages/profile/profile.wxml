@@ -37,7 +37,7 @@
       <view class="publish shadow-lg shadow-warp shadow-warp-blue cu-item {{2==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="2">
         <text class="cuIcon-skin"></text>
       </view>
-      <view class="publish shadow-lg shadow-warp shadow-warp-blue cu-item {{3==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="3">
+      <view class="coupon shadow-lg shadow-warp shadow-warp-blue cu-item {{3==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="3">
         <text class="cuIcon-refund"></text>
       </view>
     </scroll-view>
@@ -49,7 +49,7 @@
           <image src="https://image.weilanwl.com/gif/rhomb-white.gif" mode="aspectFit" class="gif-white response" style="height:180rpx"></image>
         </view>
         <view class="list-title-text">{{tabTitle}}</view>
-        <view wx:if="{{tabTitleId !== '3'}}" class="cu-list menu-avatar">
+        <view wx:if="{{tabTitleId !== '3' && dataList && dataList.length !== 0}}" class="cu-list menu-avatar">
           <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{dataList}}" wx:for-item="dataListItem" wx:key="index" data-target="move-box-{{index}}">
             <view class="cu-avatar round xl" style="background-image:url({{dataListItem.searchList[0].avatar}});"></view>
             <view class="content">
@@ -71,10 +71,13 @@
             </view>
           </view>
         </view>
-        <view wx:else class="cu-list menu-avatar">
+        <view wx:elif="{{tabTitleId === '3' && dataList && dataList.length !== 0}}" class="cu-list menu-avatar">
           <view class="coupon-wrap" wx:for="{{dataList}}" wx:for-item="dataListItem" wx:key="index">
             <image class="coupon-img" src="{{dataListItem.couponImg}}"></image>
           </view>
+        </view>
+        <view wx:else="{{!dataList}}" class="cu-list menu-avatar">
+          <view class="no-data">暂无数据</view>
         </view>
       </view>
     </view>

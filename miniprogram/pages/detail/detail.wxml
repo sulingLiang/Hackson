@@ -8,7 +8,7 @@
     <view class="publish-time">{{tools.formatTime(detail[0].creatTime)}}</view>
     <view class="title">{{detail[0].title}}</view>
   </view>
-  <text class="cuIcon-likefill {{!isStoryLike ? 'text-red' : ''}}" bindtap="handleStoryLike"></text>
+  <text class="cuIcon-likefill {{isStoryLike ? 'text-red' : ''}}" bindtap="handleStoryLike"></text>
   <view class="detail">
     <view wx:for="{{detail[0].content}}" wx:key="id" class="detail-item">
       <view class="flex">
@@ -28,7 +28,7 @@
   </view>
   <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="handleStoryClick" class="story-btn continue-btn confirm">续写</button>
   <view class="cover" wx:if="{{isShow}}"></view>
-  <view class="cu-dialog" wx:if="{{isShow}}">
+  <view class="cu-dialog" wx:if="{{isShow}}" style="bottom: {{dialogBottom}}%">
     <view class="cu-bar bg-white justify-end">
     <view class="content">故事标题: {{detail[0].title}}</view>
       <view bindtap="hideModal"class="action">
@@ -37,7 +37,7 @@
     </view>
     <view class="padding-xl">
       <form bindsubmit="handleContinueStrory">
-        <textarea placeholder="请创作您的续写故事" name="storyContent"></textarea>
+        <textarea placeholder="请创作您的续写故事" name="storyContent" adjust-position="{{false}}" bindfocus="dialogFoucus" bindblur="dialogBlur"></textarea>
         <button form-type="submit" class="confirm"> 提交 </button>
       </form>
     </view>

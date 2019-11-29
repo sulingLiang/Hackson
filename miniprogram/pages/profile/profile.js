@@ -50,7 +50,7 @@ Page({
       })
     }
 
-    this.getDataFromStory('storylike')
+    this.getDataFromStory('storylike', '我的收藏', '0')
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -101,7 +101,7 @@ Page({
       }
     }).then(res => {
       this.setData({
-        dataList: res.result,
+        dataList: res.result.reverse(),
         tabTitle: tabTitle,
         tabTitleId: tabTitleId
         
@@ -114,25 +114,12 @@ Page({
     const tabId = e.currentTarget.dataset.id
     if (tabId === '0') {
       this.getDataFromStory('storylike', '我的收藏', '0')
-      // this.setData({
-      //   tabTitle: '我的收藏',
-      //   tabTitleId: '0'
-      // })
     } else if (tabId === '1') {
       this.getDataFromStory('storypartake', '我的参与', '1')
-      // this.setData({
-      //   tabTitle: '我的参与',
-      //   tabTitleId: '1'
-      // })
       
     } else if (tabId === '2') {
       this.getDataFromStory('storypublish', '我的发布', '2')
-      // this.setData({
-      //   tabTitle: '我的发布',
-      //   tabTitleId: '2'
-      // })
     } else if (tabId === '3') {
-      // this.getDataFromStory('coupon')
       this.setData({
         tabTitle: '我的优惠券',
         tabTitleId: '3',
@@ -152,7 +139,7 @@ Page({
         id: cancelId
       }
     }).then(res => {
-      this.getDataFromStory('storylike')
+      this.getDataFromStory('storylike', '我的收藏', '0')
     })
   },
 
