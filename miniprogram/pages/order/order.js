@@ -24,6 +24,7 @@ Page({
     let that = this;
     db.collection('story').get({
       success: function(res) {
+        console.log('res',res)
         // res.data 是一个包含集合中有权限访问的所有记录的数据，不超过 20 条
         // 排序
         res.data.sort((a, b) => {
@@ -38,6 +39,7 @@ Page({
             obj[res.data[i]._openid] = true;
           }
         }
+        console.log('result', result);
         that.setData({
           dataList: result
         });

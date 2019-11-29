@@ -24,7 +24,6 @@ Page({
           data: data,
           method: 'GET',
           success: function(res) {
-            console.log('数据',res.data.results[0])
             data = res.data.results[0]
             var weather_data = data.weather_data[0]
             that.setData({

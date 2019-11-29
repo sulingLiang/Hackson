@@ -116,22 +116,99 @@ Page({
       .add({
         // data 字段表示需新增的 JSON 数据
         data: {
-          author: this.data.currentAuthor,
-          avatar: this.data.currentAvatar,
-          gender: this.data.gender ? this.data.gender : 2,
+          // author: this.data.currentAuthor,
+          // avatar: this.data.currentAvatar,
+          // gender: this.data.gender ? this.data.gender : 2,
+          author: 'SJJ',
+          avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTK5texDS7iasveGHKZt7gTdbE7JSEA7nAicmeoXibdaVTAkWHDVsYRDLrMDkmsiaaMiazAgiaicNCnypJ1hg/132',
+          gender:2,
           creatTime: new Date(),
-          floorliketotal: 0,
-          image: this.data.image,
-          title: this.data.title,
+          floorliketotal: 111,
+          // image: this.data.image,
+          // title: this.data.title,
+          image: 'https://c-dev.weimobwmc.com/test/f1a1fa12471948fc92904b67e9bd3276.jpeg',
+          title: '爱的物理学',
           content: [
+            // {
+            //   author: this.data.currentAuthor,
+            //   avatar: this.data.currentAvatar,
+            //   content: this.data.start,
+            //   creatTime: new Date(),
+            //   floor: 1,
+            //   likeCount: 0,
+            //   _openid: this.data.openid
+            // },
             {
-              author: this.data.currentAuthor,
-              avatar: this.data.currentAvatar,
-              content: this.data.start,
+              author: 'SJJ',
+              avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTK5texDS7iasveGHKZt7gTdbE7JSEA7nAicmeoXibdaVTAkWHDVsYRDLrMDkmsiaaMiazAgiaicNCnypJ1hg/132',
+              content: '爱的物理学',
               creatTime: new Date(),
               floor: 1,
-              likeCount: 0,
-              _openid: this.data.openid
+              likeCount: 10,
+              _openid: 'osP-a5TmwUMTxhszPIXYrqrjYR4Y'
+            },
+            {
+              author: '何晓义',
+              avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLLMffuU8yicUdO42IguOuyjw7qEicoXLtO7O7P94aAZYKvaBmKgNZibUfiaJK3IWbGa8uozrtRg4pSoA/132',
+              content: '质量和体积不成正比。',
+              creatTime: new Date() + 1 * 60,
+              floor: 2,
+              likeCount: 20,
+              _openid: 'osP-a5dva_JgJIB3FabQPmiQwo_Q'
+            },
+            {
+              author: '这一刻为你.Ling',
+              avatar: 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83erajmnPRxFDmxxq0kC3f22xa4ia0gdzz0FHx5w6ZickDa9df1ybQZ54kT5RaaZfgjpgguFdCUSyFNzg/132',
+              content: '那个如紫罗兰般小巧的丫头,',
+              creatTime: new Date() + 1.5 * 60,
+              floor: 3,
+              likeCount: 25,
+              _openid: 'osP-a5RFhFWnOFv9aw6HimvLnICY'
+            },
+            {
+              author: 'LSL',
+              avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJPDt8xdichhyOSaVGhlTecl5elHEnVDqOBLSow0wSRflFPfLobS3OeqVPVmUwcB4o2QBFIicia6IS5g/132',
+              content: '那个似花瓣般轻曳的丫头,',
+              creatTime: new Date() + 1.8 * 60,
+              floor: 4,
+              likeCount: 35,
+              _openid: 'osP-a5SxyKhyvoizAnnQ6oSN4eO8'
+            },
+            {
+              author: '何晓义',
+              avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLLMffuU8yicUdO42IguOuyjw7qEicoXLtO7O7P94aAZYKvaBmKgNZibUfiaJK3IWbGa8uozrtRg4pSoA/132',
+              content: '以远超过地球的质量吸引着我。',
+              creatTime: new Date() + 2 * 60,
+              floor: 5,
+              likeCount: 6,
+              _openid: 'osP-a5dva_JgJIB3FabQPmiQwo_Q'
+            },
+            {
+              author: '这一刻为你.Ling',
+              avatar: 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83erajmnPRxFDmxxq0kC3f22xa4ia0gdzz0FHx5w6ZickDa9df1ybQZ54kT5RaaZfgjpgguFdCUSyFNzg/132',
+              content: '一瞬间，我',
+              creatTime: new Date() + 2.4 * 60,
+              floor: 6,
+              likeCount: 4,
+              _openid: 'osP-a5RFhFWnOFv9aw6HimvLnICY'
+            },
+            {
+              author: 'SJJ',
+              avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTK5texDS7iasveGHKZt7gTdbE7JSEA7nAicmeoXibdaVTAkWHDVsYRDLrMDkmsiaaMiazAgiaicNCnypJ1hg/132',
+              content: '如同牛顿的苹果一样,',
+              creatTime: new Date() + 2.4 * 60,
+              floor: 7,
+              likeCount: 9,
+              _openid: 'osP-a5TmwUMTxhszPIXYrqrjYR4Y'
+            },
+            {
+              author: 'LSL',
+              avatar: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJPDt8xdichhyOSaVGhlTecl5elHEnVDqOBLSow0wSRflFPfLobS3OeqVPVmUwcB4o2QBFIicia6IS5g/132',
+              content: '不受控制地滚落在她脚下。',
+              creatTime: new Date() + 3 * 60,
+              floor: 8,
+              likeCount: 2,
+              _openid: 'osP-a5SxyKhyvoizAnnQ6oSN4eO8'
             }
           ]
         }

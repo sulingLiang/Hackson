@@ -1,9 +1,6 @@
 <!-- miniprogram/pages/order/order.wxml -->
 <view class="container">
-  <view style="background-image:url(https://c-dev.weimobwmc.com/test/c8fb83b6c5ea48bdb32411df3611e79c.png);background-size:750rpx 760rpx;" class="bg1">
-    <!-- <view class="avatar1 cu-avatar round lg" style="background-image:url({{dataList[0].avatar}});"></view>
-    <view class="avatar2 cu-avatar round lg" style="background-image:url({{dataList[1].avatar}});"></view>
-    <view class="avatar3 cu-avatar round lg" style="background-image:url({{dataList[2].avatar}});"></view> -->
+  <view style="background-image:url(https://c-dev.weimobwmc.com/test/c8fb83b6c5ea48bdb32411df3611e79c.png);background-size:cover;background-repeat:no-repeat;" class="bg1">
   </view>
   <view class="cu-list menu-avatar list">
     <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{dataList}}" wx:for-item="item" wx:key="index">
