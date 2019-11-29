@@ -5,13 +5,13 @@ Page({
     storyList: [],
     mystorylike: []
   },
-  detail: function (e) {
+  detail: function(e) {
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '../detail/detail?id=' + id
     })
   },
-  onShow: async function () {
+  onShow: async function() {
     this.setData({
       storyList: []
     })
@@ -24,7 +24,7 @@ Page({
     await this.getStoryList()
     await this.getMystorylike()
   },
-  getStoryList: function () {
+  getStoryList: function() {
     wx.showLoading({
       title: '加载中',
     })
@@ -41,12 +41,20 @@ Page({
         storyList: this.data.storyList.concat(res.result.storyList)
       });
       wx.hideLoading();
+      if (res.result.storyList.length===0) {
+        wx.showToast({
+          title: '已经到底啦',
+          icon: 'none',
+          duration: 1500,
+          mask: false
+        });
+      }
     }).catch(err => {
       wx.hideLoading();
     });
   },
 
-  getMystorylike: function () {
+  getMystorylike: function() {
     wx.cloud.callFunction({
       name: 'login'
     }).then(res => {
@@ -70,7 +78,7 @@ Page({
 
   },
 
-  onReachBottom: function () {
+  onReachBottom: function() {
     this.getStoryList();
   }
 })
