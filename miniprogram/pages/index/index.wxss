@@ -105,7 +105,7 @@
   /* autoprefixer: off */
   -webkit-box-orient: vertical;
   /* autoprefixer: on */
-  padding-bottom: 10rpx;
+  /* padding-bottom: 10rpx; */
 }
 
 /*内容*/
