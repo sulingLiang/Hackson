@@ -11,7 +11,7 @@
       <view class="content">
         <view class="text-grey text-elli">{{item.author}}</view>
       </view>
-        <image class="zan" src="../../images/like.svg" />
+        <image class="zan" src="images/like.svg" />
         <view class="cu-tag round bg-grey sm">{{item.floorliketotal||0}}</view>
     </view>
   </view>
