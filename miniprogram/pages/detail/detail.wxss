@@ -154,3 +154,6 @@ page {
   top: 330rpx;
   right: 20rpx;
 }
+.detail-item:last-child .detail-content{
+  padding-bottom: 120rpx;
+}
