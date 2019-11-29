@@ -6,12 +6,12 @@
 }
 .bg1{
   width:100%;
-  height:1300rpx;
+  height:760rpx;
   /* position: relative; */
   
 }
 .list{
-  height:50vh;
+  height:calc(100vh - 760rpx);
   margin-left:20rpx;
   margin-bottom:80rpx;
   overflow-y: auto !important;
