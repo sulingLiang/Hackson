@@ -10,7 +10,8 @@ Page({
     storyId: '',
     userFloorLike: [],
     userFloorLikeId: '',
-    isStoryLike: false
+    isStoryLike: false,
+    dialogBottom: 35
   },
   onLoad: function(option) {
     this.setData({
@@ -242,6 +243,18 @@ Page({
     });
     this.setData({
       isStoryLike: !this.data.isStoryLike
+    })
+  },
+  dialogFoucus: function(e) {
+    console.log(1,e)
+    this.setData({
+      dialogBottom: 55
+    })
+  },
+  dialogBlur: function(e) {
+    console.log(2,e)
+    this.setData({
+      dialogBottom: 35
     })
   }
 })
