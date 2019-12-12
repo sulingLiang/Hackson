@@ -78,7 +78,7 @@ Page({
         storyid: this.data.storyId,
         floor: floor,
         floorliketotal: floorliketotal,
-        likeCount: likeCount
+        likeCount: tempDetail[0].content[floor - 1].likeCount
       }
     })
   },
