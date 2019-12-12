@@ -19,7 +19,7 @@
         </view>
         <view class="like flex">
           <text class="like-count">{{item.likeCount}}</text>
-          <image class="zan" src="images/like.svg" wx:if="{{tools.includes(userFloorLike,item.floor)}}" bindtap="handleLike" data-floor="{{item.floor}}"/>
+          <image class="zan" src="images/like.svg" wx:if="{{tools.indexOf(userFloorLike,item.floor) > -1}}" bindtap="handleLike" data-floor="{{item.floor}}"/>
           <image class="zan" src="images/unlike.svg" wx:else bindtap="handleLike" data-floor="{{item.floor}}"/>
         </view>
       </view>

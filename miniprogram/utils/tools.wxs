@@ -63,17 +63,9 @@ var formatTime = function (date) {
 var indexOf = function (Alldate,item) {
     return Alldate.indexOf(item)
 }
-var includes = function (allData,item) {
-    for(var i = 0; i < allData.length; i++) {
-        if (allData[i].floor === item) {
-            return true;
-        }
-    }
-    return false;
-}
+
 module.exports = {
     formatTime: formatTime,
     getDateDiff: getDateDiff,
-    indexOf:indexOf,
-    includes: includes
+    indexOf:indexOf
 }
