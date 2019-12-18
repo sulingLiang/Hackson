@@ -32,26 +32,24 @@ Page({
   // 点赞
   handleLike: function(e) {
     const floor = e.currentTarget.dataset.floor;
-    let floorliketotal = 0; // 故事的总点赞数
-    let likeCount = 0 ; // 该楼层的点赞数
     let isFloorLike = false; // 当前用户是否对该楼层点赞过
     const isFlag = this.data.userFloorLike.some(item => item === floor);
     const tempUserFloorLike = this.data.userFloorLike;
     const tempDetail = this.data.detail;
     if (isFlag) {
       // 取消点赞
-      floorliketotal = this.data.detail[0].floorliketotal - 1;
       tempDetail[0].content[floor - 1].likeCount = tempDetail[0].content[floor - 1].likeCount - 1;
       isFloorLike = false;
       tempUserFloorLike.splice(tempUserFloorLike.indexOf(floor), 1)
+      tempDetail[0].floorliketotal = tempDetail[0].floorliketotal - 1
       this.setData({
         userFloorLike: tempUserFloorLike,
         detail: tempDetail
       })
     } else {
       // 点赞
-      floorliketotal = this.data.detail[0].floorliketotal + 1;
       tempDetail[0].content[floor - 1].likeCount = tempDetail[0].content[floor - 1].likeCount + 1;
+      tempDetail[0].floorliketotal = tempDetail[0].floorliketotal + 1
       isFloorLike = true;
       tempUserFloorLike.push(floor)
       this.setData({
@@ -77,7 +75,7 @@ Page({
         db: 'story',
         storyid: this.data.storyId,
         floor: floor,
-        floorliketotal: floorliketotal,
+        floorliketotal: tempDetail[0].floorliketotal,
         likeCount: tempDetail[0].content[floor - 1].likeCount
       }
     })
